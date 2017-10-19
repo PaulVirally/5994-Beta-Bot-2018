@@ -68,6 +68,7 @@ class Robot(CommandBasedRobot):
 
     def disabledInit(self):
         '''This function is called once when the robot is disabled.'''
+        subsystems.stop()
         self.log()
 
     def disabledPeriodic(self):
