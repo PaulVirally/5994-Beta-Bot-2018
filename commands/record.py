@@ -12,4 +12,4 @@ class Record(InstantCommand):
         super().__init__('Record')
 
     def initialize(self):
-        oi.shouldRecord = Trueå
+        oi.shouldRecord = True
