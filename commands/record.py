@@ -1,8 +1,8 @@
-from wpilib.command import Command
+from wpilib.command import InstantCommand
 
 import oi
 
-class Record(Command):
+class Record(InstantCommand):
     '''
     Starts recording all output from all subsystems and saves
     it all to a specified file
@@ -10,10 +10,6 @@ class Record(Command):
 
     def __init__(self, filePath):
         super().__init__('Record')
-        oi.shouldRecord = True
 
-    def execute(self):
-        pass
-
-    def stop(self):
-        pass
+    def initialize(self):
+        oi.shouldRecord = Trueå
