@@ -30,3 +30,8 @@ def stop():
     global drivetrain
 
     drivetrain.stop()
+
+def log():
+    global drivetrain
+
+    drivetrain.log()
