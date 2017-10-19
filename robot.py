@@ -76,7 +76,7 @@ class Robot(CommandBasedRobot):
         self.log()
 
     def log(self):  
-        subsystems.drivetrain.log()
+        subsystems.log()
         oi.log()      
 
 if __name__ == '__main__':
