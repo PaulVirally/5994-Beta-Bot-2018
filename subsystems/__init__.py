@@ -35,3 +35,12 @@ def log():
     global drivetrain
 
     drivetrain.log()
+
+def saveOutput(filePath):
+    global drivetrain
+
+    out = drivetrain.saveOutput()
+    # out += someSubsytem.saveOutput()
+
+    with open(filePath, 'w+') as outFile:
+        outFile.write(out)
