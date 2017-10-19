@@ -5,7 +5,6 @@ from wpilib.buttons.joystickbutton import JoystickButton
 from commands.crash import Crash
 
 joystick = None
-shouldRecord = False
 
 def init():
     '''

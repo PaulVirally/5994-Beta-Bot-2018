@@ -9,6 +9,7 @@ from .drivetrain import Drivetrain
 
 drivetrain = None
 recordedData = ''
+shouldRecord = False
 
 def init():
     '''
@@ -38,6 +39,9 @@ def log():
     drivetrain.log()
 
 def saveOutput():
+    if not shouldRecord:
+        return
+
     global drivetrain
 
     recordedData += drivetrain.saveOutput()
