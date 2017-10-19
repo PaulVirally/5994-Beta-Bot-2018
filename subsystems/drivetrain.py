@@ -3,6 +3,7 @@ from wpilib.command.subsystem import Subsystem
 
 from commands.smoothfollowjoystick import SmoothFollowJoystick
 import robotmap
+import subsystems
 
 class Drivetrain(Subsystem):
     '''
@@ -39,5 +40,5 @@ class Drivetrain(Subsystem):
         return self.lastRotateValue
 
     def log(self):
-        wpilib.SmartDashboard.putNumber('Speed Output', subsystems.drivetrain.getSpeed())
-        wpilib.SmartDashboard.putNumber('Rotate Output', subsystems.drivetrain.getRotate())
+        wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
+        wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
