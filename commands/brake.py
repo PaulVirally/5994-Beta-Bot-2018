@@ -1,8 +1,6 @@
 from wpilib.command import Command
 
-import oi
 import subsystems
-import utils
 
 class Brake(Command):
     '''
