@@ -74,11 +74,9 @@ class Robot(CommandBasedRobot):
         '''This function is called periodically while disabled.'''
         self.log()
 
-    def log(self):
-        wpilib.SmartDashboard.putNumber('Speed Input', oi.getJoySpeed())
-        wpilib.SmartDashboard.putNumber('Rotate Input', oi.getJoyTurn())  
-        wpilib.SmartDashboard.putNumber('Speed Output', subsystems.drivetrain.getSpeed())
-        wpilib.SmartDashboard.putNumber('Rotate Output', subsystems.drivetrain.getRotate())      
+    def log(self):  
+        subsystems.drivetrain.log()
+        oi.log()      
 
 if __name__ == '__main__':
     wpilib.run(Robot)
