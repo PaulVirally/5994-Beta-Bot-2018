@@ -8,6 +8,7 @@ from wpilib.robotbase import RobotBase
 from .drivetrain import Drivetrain
 
 drivetrain = None
+recordedData = ''
 
 def init():
     '''
@@ -36,11 +37,11 @@ def log():
 
     drivetrain.log()
 
-def saveOutput(filePath):
+def saveOutput():
     global drivetrain
 
-    out = drivetrain.saveOutput()
-    # out += someSubsytem.saveOutput()
+    recordedData += drivetrain.saveOutput()
 
+def writeOutput(filePath):
     with open(filePath, 'w+') as outFile:
         outFile.write(out)
