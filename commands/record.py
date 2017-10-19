@@ -8,7 +8,7 @@ class Record(InstantCommand):
     it all to a specified file
     '''
 
-    def __init__(self, filePath):
+    def __init__(self):
         super().__init__('Record')
 
     def initialize(self):
