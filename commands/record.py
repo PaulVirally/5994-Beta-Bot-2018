@@ -1,6 +1,6 @@
 from wpilib.command import InstantCommand
 
-import oi
+import subsystems
 
 class Record(InstantCommand):
     '''
@@ -12,4 +12,4 @@ class Record(InstantCommand):
         super().__init__('Record')
 
     def initialize(self):
-        oi.shouldRecord = True
+        subsystems.shouldRecord = True
