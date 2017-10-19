@@ -23,11 +23,12 @@ class SmoothFollowJoystick(Command):
 
         # Put the values through the sigmoid function
         # to smooth them out
-        sigY = 2*utils.sigmoid(joyY)-1
-        sigX = 2*utils.sigmoid(joyX)-1
-        sigZ = 2*utils.sigmoid(joyZ)-1
-        s1   = 2*utils.sigmoid(1)-1
-        sn1  = 2*utils.sigmoid(-1)-1
+        smoothing = 4
+        sigY = utils.sigmoid(joyY, a=smoothing)
+        sigX = utils.sigmoid(joyX, a=smoothing)
+        sigZ = utils.sigmoid(joyZ, a=smoothing)
+        s1   = utils.sigmoid(1, a=smoothing)
+        sn1  = utils.sigmoid(-1, a=smoothing)
 
         # Make sure out speed goes from -1 to 1
         speed = utils.remap(sigY, sn1, s1, -1, 1)

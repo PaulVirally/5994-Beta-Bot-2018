@@ -4,12 +4,17 @@ from a single location. Instantiate a PortsList for each subsystem and assign
 port numbers as needed.
 '''
 
-class PortsList:
-    '''Dummy class used to store variables on an object.'''
-    pass
+# Pretty neat trick https://stackoverflow.com/a/23689767/6026013
+class dotdict(dict):
+    '''dot.notation access to dictionary attributes'''
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
 
-drivetrain = PortsList()
-drivetrain.frontLeftMotor.portNum = 0
-drivetrain.frontRightMotor.portNum = 1
-drivetrain.rearLeftMotor.portNum = 2
-drivetrain.rearRightMotor.portNum = 3
+drivetrain = {
+    'frontLeftMotor'  : 0,
+    'frontRightMotor' : 1,
+    'rearLeftMotor'   : 2,
+    'rearRightMotor'  : 3
+}
+drivetrain = dotdict(drivetrain)
