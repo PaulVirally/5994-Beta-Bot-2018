@@ -5,7 +5,6 @@ from commands.crash import Crash
 
 joystick = None
 
-
 def init():
     '''
     Assign commands to button actions, and publish your joysticks so you
@@ -18,3 +17,11 @@ def init():
 
     trigger = JoystickButton(joystick, Joystick.ButtonType.kTrigger)
     trigger.whenPressed(Crash())
+
+def getJoyTurn():
+    joyX = joystick.getX()
+    joyZ = joystick.getZ()
+    return (joyX if abs(joyX) > abs(joyZ) else joyZ)
+
+def getJoySpeed():
+    return joystick.getY()
