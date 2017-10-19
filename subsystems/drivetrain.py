@@ -42,3 +42,6 @@ class Drivetrain(Subsystem):
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
+
+    def saveOutput(self):
+        return 'move: {0}\rotate: {1}\n'.format(self.lastMoveValue, self.lastRotateValue)
