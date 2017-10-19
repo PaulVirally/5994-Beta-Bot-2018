@@ -1,6 +1,6 @@
 from wpilib.command import InstantCommand
 
-import oi
+import subsystems
 
 class Record(InstantCommand):
     '''
@@ -13,5 +13,5 @@ class Record(InstantCommand):
         self.filePath = filePath
 
     def initialize(self):
-        oi.shouldRecord = False
+        subsystems.shouldRecord = False
         subsystems.writeOutput(self.filePath)
