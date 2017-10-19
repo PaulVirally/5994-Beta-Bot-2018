@@ -17,13 +17,23 @@ class Drivetrain(Subsystem):
         self.drivetrain = wpilib.RobotDrive(robotmap.drivetrain.frontLeftMotor, robotmap.drivetrain.rearLeftMotor,
                                             robotmap.drivetrain.frontRightMotor, robotmap.drivetrain.rearRightMotor)
 
+        self.lastMoveValue = 0
+        self.lastRotateValue = 0
 
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
+        self.lastMoveValue = moveValue
+        self.lastRotateValue = rotateValue
 
     def stop(self):
         self.drivetrain.stopMotor()
 
     def initDefaultCommand(self):
         self.setDefaultCommand(SmoothFollowJoystick())
+
+    def getSpeed(self):
+        return self.lastMoveValue
+
+    def getRotate(self):
+        return self.lastRotateValue
