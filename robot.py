@@ -66,6 +66,10 @@ class Robot(CommandBasedRobot):
         Scheduler.getInstance().run()
         self.log()
 
+    def disabledInit(self):
+        '''This function is called once when the robot is disabled.'''
+        self.log()
+
     def disabledPeriodic(self):
         '''This function is called periodically while disabled.'''
         self.log()
