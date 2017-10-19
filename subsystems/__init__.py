@@ -8,6 +8,7 @@ from wpilib.robotbase import RobotBase
 from .drivetrain import Drivetrain
 
 drivetrain = None
+
 recordedData = ''
 shouldRecord = False
 
