@@ -25,3 +25,8 @@ def init():
         raise RuntimeError('Subsystems have already been initialized')
 
     drivetrain = Drivetrain()
+
+def stop():
+    global drivetrain
+
+    drivetrain.stop()
