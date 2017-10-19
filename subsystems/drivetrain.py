@@ -37,3 +37,7 @@ class Drivetrain(Subsystem):
 
     def getRotate(self):
         return self.lastRotateValue
+
+    def log(self):
+        wpilib.SmartDashboard.putNumber('Speed Output', subsystems.drivetrain.getSpeed())
+        wpilib.SmartDashboard.putNumber('Rotate Output', subsystems.drivetrain.getRotate())
