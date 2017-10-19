@@ -14,8 +14,8 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        self.drivetrain = wpilib.RobotDrive(robotmap.frontLeftMotor.portNum, robotmap.rearLeftMotor.portNum,
-                                            robotmap.frontRightMotor.portNum, robotmap.rearRightMotor.portNum)
+        self.drivetrain = wpilib.RobotDrive(robotmap.drivetrain.frontLeftMotor.portNum, robotmap.drivetrain.rearLeftMotor.portNum,
+                                            robotmap.drivetrain.frontRightMotor.portNum, robotmap.drivetrain.rearRightMotor.portNum)
 
 
     def drive(self, moveValue, rotateValue):

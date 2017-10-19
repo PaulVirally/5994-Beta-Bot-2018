@@ -8,14 +8,8 @@ class PortsList:
     '''Dummy class used to store variables on an object.'''
     pass
 
-frontLeftMotor = PortsList()
-frontLeftMotor.portNum = 0
-
-rearLeftMotor = PortsList()
-rearLeftMotor.portNum = 1
-
-frontRightMotor = PortsList()
-frontRightMotor.portNum = 2
-
-rearRightMotor = PortsList()
-rearRightMotor.portNum = 3
+drivetrain = PortsList()
+drivetrain.frontLeftMotor.portNum = 0
+drivetrain.frontRightMotor.portNum = 1
+drivetrain.rearLeftMotor.portNum = 2
+drivetrain.rearRightMotor.portNum = 3
