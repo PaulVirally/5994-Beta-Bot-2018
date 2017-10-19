@@ -1,7 +1,7 @@
 from math import exp
 
 def sigmoid(x, a=1):
-    return 1/(1 + exp(-ax))
+    return 1/(1 + exp(-a*x))
 
 def remap(x, min_x, max_x, min_y, max_y):
     '''Maps x, which ranges from `min_x` to `max_x`,
