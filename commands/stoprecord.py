@@ -13,5 +13,7 @@ class StopRecord(InstantCommand):
         self.filePath = filePath
 
     def initialize(self):
+        global subsystems.shouldRecord
+        
         subsystems.shouldRecord = False
         subsystems.writeOutput(self.filePath)

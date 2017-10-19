@@ -12,4 +12,6 @@ class Record(InstantCommand):
         super().__init__('Record')
 
     def initialize(self):
+        global subsystems.shouldRecord
+        
         subsystems.shouldRecord = True
