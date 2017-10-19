@@ -1,3 +1,4 @@
+import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
 
@@ -25,3 +26,7 @@ def getJoyTurn():
 
 def getJoySpeed():
     return joystick.getY()
+
+def log():
+    wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
+    wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
