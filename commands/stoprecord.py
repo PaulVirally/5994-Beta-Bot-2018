@@ -2,7 +2,7 @@ from wpilib.command import InstantCommand
 
 import subsystems
 
-class Record(InstantCommand):
+class StopRecord(InstantCommand):
     '''
     Stops recording all output from all subsystems and saves
     it all to a specified file
