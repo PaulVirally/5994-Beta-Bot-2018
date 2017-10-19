@@ -75,8 +75,10 @@ class Robot(CommandBasedRobot):
         self.log()
 
     def log(self):
+        wpilib.SmartDashboard.putNumber('Speed Input', oi.getJoySpeed())
+        wpilib.SmartDashboard.putNumber('Rotate Input', oi.getJoyTurn())  
         wpilib.SmartDashboard.putNumber('Speed Output', subsystems.drivetrain.getSpeed())
-        wpilib.SmartDashboard.putNumber('Rotate Output', subsystems.drivetrain.getRotate())
+        wpilib.SmartDashboard.putNumber('Rotate Output', subsystems.drivetrain.getRotate())      
 
 if __name__ == '__main__':
     wpilib.run(Robot)
