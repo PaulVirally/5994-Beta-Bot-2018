@@ -1,7 +1,7 @@
 import wpilib
 from wpilib.command.subsystem import Subsystem
 
-from commands.smoothfollowjoystick import SmoothFollowJoystick
+from commands.SmoothFollowjJoystick import SmoothFollowJoystick
 import robotmap
 import subsystems
 
