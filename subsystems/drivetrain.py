@@ -1,8 +1,8 @@
 import wpilib
 from wpilib.command.subsystem import Subsystem
 
-from commands.SmoothFollowjJoystick import SmoothFollowJoystick
-import robotmap
+from commands.SmoothFollowJoystick import SmoothFollowJoystick
+import RobotMap
 import subsystems
 
 class Drivetrain(Subsystem):

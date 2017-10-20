@@ -6,7 +6,7 @@ from commandbased import CommandBasedRobot
 
 import subsystems
 import OI
-from commands.autonomous import AutonomousProgram
+from commands.Autonomous import AutonomousProgram
 
 
 class Robot(CommandBasedRobot):
