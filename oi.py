@@ -2,7 +2,7 @@ import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
 
-from commands.brake import Brake
+from commands.Brake import Brake
 
 joystick = None
 

@@ -1,8 +1,8 @@
 from wpilib.command import Command
 
-import oi
+import OI
 import subsystems
-import utils
+import Utils
 
 class SmoothFollowJoystick(Command):
     '''

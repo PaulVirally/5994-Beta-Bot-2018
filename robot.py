@@ -5,7 +5,7 @@ from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 
 import subsystems
-import oi
+import OI
 from commands.autonomous import AutonomousProgram
 
 
