@@ -17,8 +17,8 @@ class ReverseDrive(Command):
 
     def execute(self):
         # Get the values from the joystick
-        joySpeed = oi.getJoySpeed()
-        joyTurn = oi.getJoyTurn()
+        joySpeed = OI.getJoySpeed()
+        joyTurn = OI.getJoyTurn()
 
         # Put the values through the sigmoid function
         # to smooth them out

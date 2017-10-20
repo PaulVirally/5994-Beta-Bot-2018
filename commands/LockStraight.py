@@ -17,7 +17,7 @@ class LockStraight(Command):
 
     def execute(self):
         # Get the values from the joystick
-        joySpeed = oi.getJoySpeed()
+        joySpeed = OI.getJoySpeed()
 
         # Put the values through the sigmoid function
         # to smooth them out
