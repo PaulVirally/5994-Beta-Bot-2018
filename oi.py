@@ -3,7 +3,7 @@ from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
 
 from commands.Brake import Brake
-# from commands.LockStraight import LockStraight
+from commands.LockStraight import LockStraight
 # from commands.ReverseDrive import ReverseDrive
 # from commands.Climb import Climb
 # from commands.HoldClimb import HoldClimb
@@ -28,10 +28,10 @@ def init():
     brakeButton = JoystickButton(joystick, RobotMap.buttons.brake)
     brakeButton.whileHeld(Brake())
 
+    lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
+    lockStraightButton.whileHeld(LockStraight())
+    
     # TODO:
-    # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
-    # lockStraightButton.whileHeld(LockStraight())
-    # 
     # reverseDriveButton = joystick(joystick, RobotMap.buttons.reverseDrive)
     # reverseDriveButton.whileHeld(ReverseDrive())
     #
