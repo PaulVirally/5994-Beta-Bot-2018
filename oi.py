@@ -9,6 +9,7 @@ from commands.Brake import Brake
 # from commands.HoldClimb import HoldClimb
 # from commands.Drop import Drop
 # from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
+from commands.Record import Record
 
 import RobotMap
 
