@@ -5,7 +5,7 @@ for it in the global scope.
 '''
 from wpilib.robotbase import RobotBase
 
-from .drivetrain import Drivetrain
+from .Drivetrain import Drivetrain
 
 drivetrain = None
 
