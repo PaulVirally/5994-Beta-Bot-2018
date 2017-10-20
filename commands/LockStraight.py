@@ -4,7 +4,7 @@ import OI
 import subsystems
 import Utils
 
-class SmoothFollowJoystick(Command):
+class LockStraight(Command):
     '''
     Drives the robot straight with a speed according
     to what the joystick says.
