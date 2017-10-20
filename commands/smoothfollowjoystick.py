@@ -29,8 +29,8 @@ class SmoothFollowJoystick(Command):
         sn1  = 2*Utils.sigmoid(-1, a=smoothing)-1
 
         # Make sure out speed goes from -1 to 1
-        speed = utils.remap(sigJoySpeed, sn1, s1, -1, 1)
-        turn = utils.remap(sigJoyTurn, sn1, s1, -1, 1)
+        speed = Utils.remap(sigJoySpeed, sn1, s1, -1, 1)
+        turn = Utils.remap(sigJoyTurn, sn1, s1, -1, 1)
 
         # Little bit of debugging
         print('({0}, {1}) -> ({2}, {3})'.format(joySpeed, joyTurn, speed, turn))
