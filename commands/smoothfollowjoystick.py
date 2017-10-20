@@ -23,8 +23,8 @@ class SmoothFollowJoystick(Command):
         # Put the values through the sigmoid function
         # to smooth them out
         smoothing = 4 # TODO: Put this on the smart dashboard??
-        sigJoySpeed = 2*utils.sigmoid(joySpeed, a=smoothing)
-        sigJoyTurn = 2*utils.sigmoid(joyTurn, a=smoothing)
+        sigJoySpeed = 2*utils.sigmoid(joySpeed, a=smoothing)-1
+        sigJoyTurn = 2*utils.sigmoid(joyTurn, a=smoothing)-1
         s1   = 2*utils.sigmoid(1, a=smoothing)-1
         sn1  = 2*utils.sigmoid(-1, a=smoothing)-1
 
