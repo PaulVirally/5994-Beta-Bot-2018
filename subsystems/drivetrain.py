@@ -15,8 +15,8 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        self.drivetrain = wpilib.RobotDrive(robotmap.drivetrain.frontLeftMotor, robotmap.drivetrain.rearLeftMotor,
-                                            robotmap.drivetrain.frontRightMotor, robotmap.drivetrain.rearRightMotor)
+        self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
+                                            RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
 
         self.lastMoveValue = 0
         self.lastRotateValue = 0
