@@ -2,7 +2,7 @@ import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
 
-from commands.crash import Crash
+from commands.brake import Brake
 
 joystick = None
 
@@ -17,7 +17,7 @@ def init():
     joystick = Joystick(0)
 
     trigger = JoystickButton(joystick, Joystick.ButtonType.kTrigger)
-    trigger.whenPressed(Crash())
+    trigger.whenPressed(Brake())
 
 def getJoyTurn():
     joyX = joystick.getX()
