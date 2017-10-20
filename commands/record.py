@@ -4,14 +4,22 @@ import subsystems
 
 class Record(InstantCommand):
     '''
-    Starts recording all output from all subsystems and saves
+    Starts/stop recording all output from all subsystems and saves
     it all to a specified file
     '''
 
-    def __init__(self):
+    def __init__(self, filePath):
         super().__init__('Record')
+        self.filePath = filePath
 
     def initialize(self):
         global subsystems.shouldRecord
-        
-        subsystems.shouldRecord = True
+
+        # If it was in recording mode, stop recording and save the output
+        if subsystems.shouldRecord:
+            subsystems.shouldRecord = False
+            subsystems.writeOutput(self.filePath)
+
+        # If it was not in recording mode, set it to recording mode
+        else:
+            subsystems.shouldRecord = True
