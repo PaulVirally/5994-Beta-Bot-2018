@@ -22,6 +22,7 @@ buttons = {
     'recordCenterAuto' : 11,
     'recordLeftAuto'   : 10
 }
+buttons = dotdict(drivetrain)
 
 drivetrain = {
     'frontLeftMotor'  : 0,
