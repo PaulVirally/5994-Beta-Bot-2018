@@ -13,7 +13,7 @@ class Record(InstantCommand):
         self.filePath = filePath
 
     def initialize(self):
-        global subsystems.shouldRecord
+        global subsystems
 
         # If it was in recording mode, stop recording and save the output
         if subsystems.shouldRecord:
