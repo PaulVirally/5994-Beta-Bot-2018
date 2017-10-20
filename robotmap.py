@@ -11,6 +11,18 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 
+buttons = {
+    'brake'            : 1,
+    'lockStraight'     : 2,
+    'reverseDrive'     : 5,
+    'climb'            : 6,
+    'stopClimb'        : 4,
+    'drop'             : 8,
+    'preciseDrive'     : 7,
+    'recordCenterAuto' : 11,
+    'recordLeftAuto'   : 10
+}
+
 drivetrain = {
     'frontLeftMotor'  : 0,
     'frontRightMotor' : 1,
