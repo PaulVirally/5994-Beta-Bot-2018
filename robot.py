@@ -35,7 +35,7 @@ class Robot(CommandBasedRobot):
         Since OI instantiates commands and commands need access to subsystems,
         OI must be initialized after subsystems.
         '''
-        oi.init()
+        OI.init()
 
 
     def autonomousInit(self):
@@ -77,7 +77,7 @@ class Robot(CommandBasedRobot):
 
     def log(self):  
         subsystems.log()
-        oi.log()      
+        OI.log()      
 
 if __name__ == '__main__':
     wpilib.run(Robot)
