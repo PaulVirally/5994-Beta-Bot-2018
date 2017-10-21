@@ -32,9 +32,6 @@ class SmoothFollowJoystick(Command):
         speed = Utils.remap(sigJoySpeed, sn1, s1, -1, 1)
         turn = Utils.remap(sigJoyTurn, sn1, s1, -1, 1)
 
-        # Little bit of debugging
-        print('({0}, {1}) -> ({2}, {3})'.format(joySpeed, joyTurn, speed, turn))
-
         # Drive
         subsystems.drivetrain.drive(speed, turn)
 
