@@ -4,7 +4,7 @@ from wpilib.buttons.joystickbutton import JoystickButton
 
 from commands.Brake import Brake
 from commands.LockStraight import LockStraight
-# from commands.ReverseDrive import ReverseDrive
+from commands.ReverseDrive import ReverseDrive
 # from commands.Climb import Climb
 # from commands.HoldClimb import HoldClimb
 # from commands.Drop import Drop
