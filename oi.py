@@ -31,10 +31,10 @@ def init():
     lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
     lockStraightButton.whileHeld(LockStraight())
     
+    reverseDriveButton = joystick(joystick, RobotMap.buttons.reverseDrive)
+    reverseDriveButton.whileHeld(ReverseDrive())
+    
     # TODO:
-    # reverseDriveButton = joystick(joystick, RobotMap.buttons.reverseDrive)
-    # reverseDriveButton.whileHeld(ReverseDrive())
-    #
     # climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
     # climbButton.whileHeld(Climb())
     # climbButton.whenReleased(HoldClimb())
