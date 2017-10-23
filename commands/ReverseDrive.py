@@ -33,7 +33,7 @@ class ReverseDrive(Command):
         turn = Utils.remap(sigJoyTurn, sn1, s1, -1, 1)
 
         # Drive backwards
-        subsystems.drivetrain.drive(-speed, -turn)
+        subsystems.drivetrain.drive(-speed, turn)
 
     def stop(self):
         subsystems.drivetrain.stop()
