@@ -40,7 +40,7 @@ def stop():
     global climber
 
     drivetrain.stop()
-    climber.hold() # .stop()?
+    climber.stop()
 
 def log():
     global drivetrain
