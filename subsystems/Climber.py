@@ -31,7 +31,6 @@ class Climber(Subsystem):
         self.lastClimbValue = -0.1
 
     def stop(self):
-        print('Why would you use this function?')
         self.motor.stop(0)
         self.lastClimbValue = 0
 
