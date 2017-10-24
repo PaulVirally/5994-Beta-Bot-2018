@@ -7,7 +7,7 @@ from commands.LockStraight import LockStraight
 from commands.ReverseDrive import ReverseDrive
 from commands.Climb import Climb
 from commands.HoldClimb import HoldClimb
-from commandbased.StopClimb import StopClimb
+from commands.StopClimb import StopClimb
 from commands.Drop import Drop
 # from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
