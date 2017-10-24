@@ -40,7 +40,7 @@ def init():
     climbButton.whenReleased(HoldClimb())
 
     stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
-    stopClimbButton.whenPressed(StopClimb)
+    stopClimbButton.whenPressed(StopClimb())
 
     # TODO:
     # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
