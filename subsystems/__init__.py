@@ -29,7 +29,7 @@ def init():
     if drivetrain is not None and not RobotBase.isSimulation():
         raise RuntimeError('Subsystems have already been initialized')
 
-    if climber is not None and nto RobotBase.isSimulation():
+    if climber is not None and not RobotBase.isSimulation():
         raise RuntimeError('Subsystems have already been initialized')
 
     drivetrain = Drivetrain()
