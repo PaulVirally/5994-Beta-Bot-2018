@@ -6,8 +6,10 @@ for it in the global scope.
 from wpilib.robotbase import RobotBase
 
 from .Drivetrain import Drivetrain
+from .Climber import Climber
 
 drivetrain = None
+climber = None
 
 recordedData = ''
 shouldRecord = False
@@ -27,25 +29,35 @@ def init():
     if drivetrain is not None and not RobotBase.isSimulation():
         raise RuntimeError('Subsystems have already been initialized')
 
+    if climber is not None and nto RobotBase.isSimulation():
+        raise RuntimeError('Subsystems have already been initialized')
+
     drivetrain = Drivetrain()
+    climber = Climber()
 
 def stop():
     global drivetrain
+    global climber
 
     drivetrain.stop()
+    climber.hold() # .stop()?
 
 def log():
     global drivetrain
+    global climber
 
     drivetrain.log()
+    climber.log()
 
 def saveOutput():
     if not shouldRecord:
         return
 
     global drivetrain
+    global climber
 
     recordedData += drivetrain.saveOutput()
+    recordedData += climber.saveOutput()
 
 def writeOutput(filePath):
     with open(filePath, 'w+') as outFile:
