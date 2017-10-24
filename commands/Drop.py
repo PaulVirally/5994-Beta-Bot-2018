@@ -4,18 +4,18 @@ import OI
 import subsystems
 import Utils
 
-class Climb(Command):
+class Drop(Command):
     '''
-    Activates the climber subsystem
+    Drop command
     '''
 
     def __init__(self):
-        super().__init__('Climb')
+        super().__init__('Drop')
 
         self.requires(subsystems.climber)
 
     def execute(self):
-        subsystems.climber.climb()
+        subsystems.climber.drop()
 
     def stop(self):
-        subsystems.drivetrain.stop() # .hold()?
+        subsystems.drivetrain.stop()
