@@ -75,7 +75,9 @@ class Robot(CommandBasedRobot):
         '''This function is called periodically while disabled.'''
         self.log()
 
-    def log(self):  
+    def log(self):
+        '''Logs all the information from the subsystems and
+        from the OI to the DashBoard'''
         subsystems.log()
         OI.log()      
 
