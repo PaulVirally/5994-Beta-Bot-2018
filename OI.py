@@ -42,10 +42,10 @@ def init():
     stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
     stopClimbButton.whenPressed(StopClimb())
 
+    dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
+    dropButton.whileHeld(Drop())
+
     # TODO:
-    # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
-    # dropButton.whileHeld(Drop())
-    #
     # preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     # preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
 
