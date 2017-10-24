@@ -6,7 +6,8 @@ from commands.Brake import Brake
 from commands.LockStraight import LockStraight
 from commands.ReverseDrive import ReverseDrive
 from commands.Climb import Climb
-# from commands.HoldClimb import HoldClimb
+from commands.HoldClimb import HoldClimb
+from commandbased.StopClimb import StopClimb
 # from commands.Drop import Drop
 # from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
@@ -36,13 +37,12 @@ def init():
     
     climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
     climbButton.whileHeld(Climb())
-    
+    climbButton.whenReleased(HoldClimb())
+
+    stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
+    stopClimbButton.whenPressed(StopClimb)
+
     # TODO:
-    # climbButton.whenReleased(HoldClimb())
-    #
-    # stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
-    # stopClimbButton.whenPressed(StopClimb)
-    #
     # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
     # dropButton.whileHeld(Drop())
     #
