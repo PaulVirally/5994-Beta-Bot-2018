@@ -27,11 +27,11 @@ class Climber(Subsystem):
         self.lastClimbValue = 0.1
 
     def drop(self):
-        self.motor.drop(-0.1)
+        self.motor.set(-0.1)
         self.lastClimbValue = -0.1
 
     def stop(self):
-        self.motor.stop(0)
+        self.motor.set(0)
         self.lastClimbValue = 0
 
     def getOutput(self):
