@@ -31,3 +31,8 @@ drivetrain = {
     'rearRightMotor'  : 3
 }
 drivetrain = dotdict(drivetrain)
+
+climber = {
+    'motor' : 4
+}
+climber = dotdict(climber)
