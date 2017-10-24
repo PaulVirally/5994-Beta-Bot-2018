@@ -20,6 +20,7 @@ def init():
     instantiated. Do not run it more than once.
     '''
     global drivetrain
+    global climber
 
     '''
     Some tests call startCompetition multiple times, so don't throw an error if
