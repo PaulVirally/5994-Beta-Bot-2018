@@ -14,6 +14,7 @@ climber = None
 recordedData = ''
 shouldRecord = False
 toPlayBack = ''
+lineBreak = '+=-=-=-=-=-=-=-=-=-=-=+'
 
 def init():
     '''
@@ -53,6 +54,7 @@ def saveOutput():
 
     recordedData += drivetrain.saveOutput()
     recordedData += climber.saveOutput()
+    recordedData += lineBreak
 
 def writeOutput(filePath):
     with open(filePath, 'w+') as outFile:
@@ -62,3 +64,12 @@ def readRecording(filePath):
     global toPlayBack
     with open(filePath, 'r') as inFile:
         toPlayBack = inFile.read()
+
+def playRecording():
+    idx = toPlayBack.index(lineBreak)
+    miniRecording = toPlayBack[:idx]
+
+    drivetrain.playFromRecording(miniRecording)
+    climber.playFromRecording(miniRecording)
+
+    toPlayBack = toPlayBack[idx+1:]
