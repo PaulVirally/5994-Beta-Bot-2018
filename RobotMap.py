@@ -19,8 +19,8 @@ buttons = {
     'stopClimb'        : 4,
     'drop'             : 8,
     'preciseDrive'     : 7,
-    'recordCenterAuto' : 11,
-    'recordLeftAuto'   : 10
+    'recordCenterAuto' : 10,
+    'playCenterAuto'   : 11
 }
 buttons = dotdict(buttons)
 
