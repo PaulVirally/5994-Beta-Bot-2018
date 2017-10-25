@@ -10,6 +10,7 @@ from .Climber import Climber
 
 drivetrain = None
 climber = None
+subsystems = []
 
 recordedData = ''
 shouldRecord = False
@@ -23,6 +24,7 @@ def init():
     '''
     global drivetrain
     global climber
+    global subsystems
 
     '''
     Some tests call startCompetition multiple times, so don't throw an error if
@@ -38,13 +40,15 @@ def init():
     drivetrain = Drivetrain()
     climber = Climber()
 
+    subsystems = [drivetrain, climber]
+
 def stop():
-    drivetrain.stop()
-    climber.stop()
+    for subsys in subsystems:
+        subsys.stop()
 
 def log():
-    drivetrain.log()
-    climber.log()
+    for subsys in subsystems:
+        subsys.log()
 
 def saveOutput():
     if not shouldRecord:
@@ -52,8 +56,8 @@ def saveOutput():
 
     global recordedData
 
-    recordedData += drivetrain.saveOutput()
-    recordedData += climber.saveOutput()
+    for subsys in subsystems:
+        recordedData += subsys.saveOutput()
     recordedData += lineBreak
 
 def writeOutput(filePath):
@@ -69,7 +73,7 @@ def playRecording():
     idx = toPlayBack.index(lineBreak)
     miniRecording = toPlayBack[:idx]
 
-    drivetrain.playFromRecording(miniRecording)
-    climber.playFromRecording(miniRecording)
+    for subsys in subsystems:
+        subsys.playFromRecording(miniRecording)
 
     toPlayBack = toPlayBack[idx+1:]
