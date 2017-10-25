@@ -2,7 +2,7 @@ from wpilib.command import Command
 
 import subsystems
 
-class Record(Command):
+class PlayBack(Command):
     '''
     Play back a recording from a specified file to the subsystems
     '''
