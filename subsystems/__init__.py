@@ -38,16 +38,10 @@ def init():
     climber = Climber()
 
 def stop():
-    global drivetrain
-    global climber
-
     drivetrain.stop()
     climber.stop()
 
 def log():
-    global drivetrain
-    global climber
-
     drivetrain.log()
     climber.log()
 
@@ -55,8 +49,7 @@ def saveOutput():
     if not shouldRecord:
         return
 
-    global drivetrain
-    global climber
+    global recordedData
 
     recordedData += drivetrain.saveOutput()
     recordedData += climber.saveOutput()
@@ -66,5 +59,6 @@ def writeOutput(filePath):
         outFile.write(out)
 
 def readRecording(filePath):
+    global toPlayBack
     with open(filePath, 'r') as inFile:
         toPlayBack = inFile.read()
