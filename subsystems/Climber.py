@@ -42,3 +42,18 @@ class Climber(Subsystem):
 
     def saveOutput(self):
         return 'climb: {0}\n'.format(self.getOutput())
+
+    def playFromRecording(self, recording):
+    '''
+    This plays back a certain recording, but only using
+    the values that are useful for the climber
+    '''
+
+    lines = recording.split('\n')
+
+    for l in lines:
+        if l.startswith('climb'):
+            climbValue = float(l.rstrip()[len('climb: '):])
+
+    self.motor.set(climbValue)
+    self.lastClimbValue = climbValue
