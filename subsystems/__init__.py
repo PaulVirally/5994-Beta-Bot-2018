@@ -13,6 +13,7 @@ climber = None
 
 recordedData = ''
 shouldRecord = False
+toPlayBack = ''
 
 def init():
     '''
@@ -63,3 +64,7 @@ def saveOutput():
 def writeOutput(filePath):
     with open(filePath, 'w+') as outFile:
         outFile.write(out)
+
+def readRecording(filePath):
+    with open(filePath, 'r') as inFile:
+        toPlayBack = inFile.read()
