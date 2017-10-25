@@ -66,8 +66,11 @@ def writeOutput(filePath):
 
 def readRecording(filePath):
     global toPlayBack
-    with open(filePath, 'r') as inFile:
-        toPlayBack = inFile.read()
+    try:
+        with open(filePath, 'r') as inFile:
+            toPlayBack = inFile.read()
+    except FileNotFoundError:
+        print('[ERROR] Could not open {0}'.format(filePath))
 
 def playRecording():
     idx = toPlayBack.index(lineBreak)
