@@ -45,3 +45,19 @@ class Drivetrain(Subsystem):
 
     def saveOutput(self):
         return 'move: {0}\rotate: {1}\n'.format(self.getSpeed(), self.getRotate())
+
+    def playFromRecording(self, recording):
+        '''
+        This plays back a certain recording, but only using
+        the values that are useful for the drivetrain
+        '''
+
+        lines = recording.split('\n')
+
+        for l in lines:
+            if l.startswith('move'):
+                moveValue = float(l.rstrip()[len('move: '):])
+            elif l.startswith('turn'):
+                turnValue = float(l.rstrip()[len('turn: '):])
+
+        self.drive(moveValue, turnValue)
