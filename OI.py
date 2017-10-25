@@ -54,7 +54,7 @@ def init():
     centerRecordButton.whenPressed(Record('center_auto.auto'))
 
     playCenterButton = JoystickButton(joystick, RobotMap.buttons.playCenterAuto)
-    playCenterButton.whilePressed(PlayBack('center_auto.auto'))
+    playCenterButton.whileHeld(PlayBack('center_auto.auto'))
 
 def getJoyTurn():
     joyX = joystick.getX()
