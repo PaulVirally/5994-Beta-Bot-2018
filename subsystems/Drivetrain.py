@@ -28,7 +28,7 @@ class Drivetrain(Subsystem):
         self.lastRotateValue = rotateValue
 
     def stop(self):
-        self.drivetrain.stopMotor()
+        self.drive(0, 0)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(SmoothFollowJoystick())
