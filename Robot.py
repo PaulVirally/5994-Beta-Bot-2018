@@ -8,7 +8,6 @@ import subsystems
 import OI
 from commands.Autonomous import AutonomousProgram
 
-
 class Robot(CommandBasedRobot):
     '''
     The CommandBasedRobot base class implements almost everything you need for
