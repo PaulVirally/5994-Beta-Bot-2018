@@ -9,6 +9,7 @@ from commands.Climb import Climb
 from commands.HoldClimb import HoldClimb
 from commands.StopClimb import StopClimb
 from commands.Drop import Drop
+from commands.PlayBack import PlayBack
 # from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
 
@@ -52,8 +53,8 @@ def init():
     centerRecordButton = JoystickButton(joystick, RobotMap.buttons.recordCenterAuto)
     centerRecordButton.whenPressed(Record('center_auto.auto'))
 
-    leftRecordButton = JoystickButton(joystick, RobotMap.buttons.recordLeftAuto)
-    leftRecordButton.whenPressed(Record('left_auto.auto'))
+    playCenterButton = JoystickButton(joystick, RobotMap.buttons.playCenterAuto)
+    playCenterButton.whilePressed(PlayBack('center_auto.auto'))
 
 def getJoyTurn():
     joyX = joystick.getX()
