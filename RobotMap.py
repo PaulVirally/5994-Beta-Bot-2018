@@ -11,6 +11,7 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 
+# Button mapping for the joystick
 buttons = {
     'brake'            : 1,
     'lockStraight'     : 2,
@@ -24,6 +25,7 @@ buttons = {
 }
 buttons = dotdict(buttons)
 
+# Drivetrain motor assignment
 drivetrain = {
     'frontLeftMotor'  : 0,
     'frontRightMotor' : 1,
@@ -32,6 +34,7 @@ drivetrain = {
 }
 drivetrain = dotdict(drivetrain)
 
+# Climber motor assignment
 climber = {
     'motor' : 4
 }
