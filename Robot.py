@@ -81,4 +81,4 @@ class Robot(CommandBasedRobot):
         OI.log()
 
 if __name__ == '__main__':
-    wpilib.run(Robot)
+    wpilib.run(Robot, physics_enabled=True)
