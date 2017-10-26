@@ -1,10 +1,14 @@
 from math import exp
 
 def sigmoid(x, a=1):
+    '''
+    The sigmoid function is of the form 1/(1 + e^-(ax))
+    '''
     return 1/(1 + exp(-a*x))
 
 def remap(x, min_x, max_x, min_y, max_y):
-    '''Maps x, which ranges from `min_x` to `max_x`,
+    '''
+    Maps x, which ranges from `min_x` to `max_x`,
     to a new number which can range from `min_y` to 
     `max_y`.
     '''
