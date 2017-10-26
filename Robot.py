@@ -57,7 +57,7 @@ class Robot(CommandBasedRobot):
         # This ensures that the autonomous stops running when
         # teleop starts running.
         if self.autonomousCommand is not None:
-            print('Cancelling the autonomous command...')
+            print('[ROBOT] Cancelling the autonomous command...')
             self.autonomousCommand.cancel()
 
     def teleopPeriodic(self):
