@@ -8,3 +8,4 @@
 * Docstrings everywhere
 * Tests everywhere
 * Linting?
+* Convert all non-wpi variables to use snake_case naming convention
