@@ -78,7 +78,7 @@ class Robot(CommandBasedRobot):
         '''Logs all the information from the subsystems and
         from the OI to the DashBoard'''
         subsystems.log()
-        OI.log()      
+        OI.log()
 
 if __name__ == '__main__':
     wpilib.run(Robot)
