@@ -70,7 +70,7 @@ def readRecording(filePath):
         with open(filePath, 'r') as inFile:
             toPlayBack = inFile.read()
     except FileNotFoundError:
-        print('[ERROR] Could not open {0}'.format(filePath))
+        print('[ERROR] subsystems::__init__::readRecording(...) Could not open {0}'.format(filePath))
 
 def playRecording():
     idx = toPlayBack.index(lineBreak)
