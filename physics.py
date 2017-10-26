@@ -9,10 +9,11 @@ class PhysicsEngine:
         self.physics_controller = physics_controller
 
     def update_sim(self, hal_data, now, dt):
-        lr_motor = hal_data['pwm'][2]['value']
-        rr_motor = hal_data['pwm'][3]['value']
-        lf_motor = hal_data['pwm'][0]['value']
-        rf_motor = hal_data['pwm'][1]['value']
+        front_left_motor = hal_data['pwm'][0]['value']
+        front_right_motor = hal_data['pwm'][1]['value']
+        rear_left_motor = hal_data['pwm'][2]['value']
+        rear_right_motor = hal_data['pwm'][3]['value']
 
-        speed, rotation = drivetrains.four_motor_drivetrain(lr_motor, rr_motor, lf_motor, rf_motor)
+        speed, rotation = drivetrains.four_motor_drivetrain(rear_left_motor, rear_right_motor, 
+                                                            front_left_motor, front_right_motor)
         self.physics_controller.drive(speed, rotation, dt)
