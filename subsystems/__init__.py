@@ -62,7 +62,7 @@ def saveOutput():
 
 def writeOutput(filePath):
     with open(filePath, 'w+') as outFile:
-        outFile.write(out)
+        outFile.write(recordedData)
 
 def readRecording(filePath):
     global toPlayBack
@@ -73,6 +73,8 @@ def readRecording(filePath):
         print('[ERROR] subsystems::__init__::readRecording(...) Could not open {0}'.format(filePath))
 
 def playRecording():
+    global toPlayBack
+    
     idx = toPlayBack.index(lineBreak)
     miniRecording = toPlayBack[:idx]
 
