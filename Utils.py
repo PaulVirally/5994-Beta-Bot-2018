@@ -14,4 +14,8 @@ def remap(x, min_x, max_x, min_y, max_y):
     min_y = (min_y if min_y <= max_y else max_y)
     max_y = (max_y if max_y >= min_y else min_y)
 
-    return min_y + (max_y - min_y) * ((x - min_x) / (max_x - min_x))
+    try:
+        return min_y + (max_y - min_y) * ((x - min_x) / (max_x - min_x))
+    except ZeroDivisionError:
+        print('[WARNING] Utils::remap(...) was given non varying input. Input was returned.')
+        return x
