@@ -39,3 +39,10 @@ climber = {
     'motor' : 4
 }
 climber = dotdict(climber)
+
+# Default parameters assignment
+defaults = {
+    'speedSensitivity'   : 4,
+    'turningSensitivity' : 4
+}
+defaults = dotdict(defaults)
