@@ -67,3 +67,5 @@ def getJoySpeed():
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
+    wpilib.SmartDashboard.putNumber('Speed Sensitivity', 4)
+    wpilib.SmartDashboard.putNumber('Turning Sensitivity', 4)
