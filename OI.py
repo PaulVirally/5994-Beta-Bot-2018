@@ -64,6 +64,12 @@ def getJoyTurn():
 def getJoySpeed():
     return joystick.getY()
 
+def getSpeedSmoothing():
+    return wpilib.SmartDashboard.getNumber('Speed Sensitivity', RobotMap.defaults.turningSensitivity)
+
+def getTurnSmoothing():
+    return wpilib.SmartDashboard.getNumber('Turning Sensitivity', RobotMap.defaults.turningSensitivity)
+
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
