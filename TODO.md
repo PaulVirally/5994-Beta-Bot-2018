@@ -8,3 +8,4 @@
 * Tests everywhere
 * Linting?
 * Convert all non-wpi variables to use snake_case naming convention
+* Put all constants (including strings) in RobotMap.py
