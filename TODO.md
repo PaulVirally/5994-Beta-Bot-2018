@@ -1,3 +1,4 @@
+* Figure out why the auto routing is always trying to be read when Robot::init() is called
 * Add a notification if something is being recorded on the SmartDashboard
 * Add the following commands:
     * preciseDrive
