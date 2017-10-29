@@ -17,6 +17,11 @@ class Drivetrain(Subsystem):
 
         self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
                                             RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
+                                            
+        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, False)
+        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
+        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontRightMotor, False)
+        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearRightMotor, False)
 
         self.lastMoveValue = 0
         self.lastRotateValue = 0
