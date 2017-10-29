@@ -15,6 +15,7 @@ class Climber(Subsystem):
         super().__init__('Climber')
 
         self.motor = wpilib.VictorSP(RobotMap.climber.motor)
+        self.motor.setInverted(False)
 
         self.lastClimbValue = 0
 
