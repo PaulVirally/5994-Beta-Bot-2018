@@ -76,7 +76,7 @@ class Robot(CommandBasedRobot):
 
     def log(self):
         '''Logs all the information from the subsystems and
-        from the OI to the DashBoard.'''
+        from the OI to the SmartDashoard.'''
         subsystems.log()
         OI.log()
 
