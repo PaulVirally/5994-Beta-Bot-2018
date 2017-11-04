@@ -48,7 +48,7 @@ class Robot(CommandBasedRobot):
         self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
-        '''This function is called periodically during autonomous'''
+        '''This function is called periodically during autonomous.'''
         Scheduler.getInstance().run()
         self.log()
 
@@ -76,7 +76,7 @@ class Robot(CommandBasedRobot):
 
     def log(self):
         '''Logs all the information from the subsystems and
-        from the OI to the DashBoard'''
+        from the OI to the DashBoard.'''
         subsystems.log()
         OI.log()
 
