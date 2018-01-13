@@ -1,4 +1,5 @@
 import wpilib
+import ctre
 from wpilib.command.subsystem import Subsystem
 
 from commands.SmoothFollowJoystick import SmoothFollowJoystick
@@ -15,20 +16,20 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        self.frontLeftMotor = wpilib.CANTalon(RobotMap.drivetrain.frontLeftMotor)
-        self.frontRightMotor = wpilib.CANTalon(RobotMap.drivetrain.frontRightMotor)
-        self.rearLeftMotor = wpilib.CANTalon(RobotMap.drivetrain.rearLeftMotor)
-        self.rearRightMotor = wpilib.CANTalon(RobotMap.drivetrain.rearRightMotor)
+        self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
+        self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
+        self.rearLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
+        self.rearRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
 
         # self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
                                             # RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
         self.drivetrain = wpilib.RobotDrive(self.frontLeftMotor, self.rearLeftMotor,
                                             self.frontRightMotor, self.rearRightMotor)
                                             
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, False)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontRightMotor, False)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearRightMotor, False)
+        # self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, False)
+        # self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
+        # self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontRightMotor, False)
+        # self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearRightMotor, False)
 
         self.lastMoveValue = 0
         self.lastRotateValue = 0
