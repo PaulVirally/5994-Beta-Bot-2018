@@ -27,10 +27,10 @@ buttons = dotdict(buttons)
 
 # Drivetrain motor assignment
 drivetrain = {
-    'frontLeftMotor'  : 0,
-    'frontRightMotor' : 1,
+    'frontLeftMotor'  : 1,
+    'frontRightMotor' : 3,
     'rearLeftMotor'   : 2,
-    'rearRightMotor'  : 3
+    'rearRightMotor'  : 0
 }
 drivetrain = dotdict(drivetrain)
 
