@@ -16,10 +16,10 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
-        self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
-        self.rearLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
-        self.rearRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
+        self.frontLeftMotor =  ctre.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
+        self.frontRightMotor =  ctre.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
+        self.rearLeftMotor =  ctre.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
+        self.rearRightMotor =  ctre.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
 
         # self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
                                             # RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
