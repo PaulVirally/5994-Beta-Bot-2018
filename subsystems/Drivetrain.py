@@ -15,8 +15,15 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
-                                            RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
+        self.frontLeftMotor = wpilib.CANTalon(RobotMap.drivetrain.frontLeftMotor)
+        self.frontRightMotor = wpilib.CANTalon(RobotMap.drivetrain.frontRightMotor)
+        self.rearLeftMotor = wpilib.CANTalon(RobotMap.drivetrain.rearLeftMotor)
+        self.rearRightMotor = wpilib.CANTalon(RobotMap.drivetrain.rearRightMotor)
+
+        # self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor, RobotMap.drivetrain.rearLeftMotor,
+                                            # RobotMap.drivetrain.frontRightMotor, RobotMap.drivetrain.rearRightMotor)
+        self.drivetrain = wpilib.RobotDrive(self.frontLeftMotor, self.rearLeftMotor,
+                                            self.frontRightMotor, self.rearRightMotor)
                                             
         self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, False)
         self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
