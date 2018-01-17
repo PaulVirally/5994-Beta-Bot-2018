@@ -80,6 +80,9 @@ coverage.xml
 *.cover
 .hypothesis/
 
+# Deployment file
+.deploy_cfg
+
 # Translations
 *.mo
 *.pot
