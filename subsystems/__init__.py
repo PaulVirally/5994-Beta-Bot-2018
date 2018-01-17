@@ -36,11 +36,6 @@ def init():
 
     subsystems = [drivetrain, climber]
 
-    for subsys in subsystems:
-        if subsys is not None and not RobotBase.isSimulation():
-            raise RuntimeError('Subsystems have already been initialized')
-
-
 def stop():
     for subsys in subsystems:
         subsys.stop()
