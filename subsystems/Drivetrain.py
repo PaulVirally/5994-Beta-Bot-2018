@@ -20,7 +20,7 @@ class Drivetrain(Subsystem):
         # According to CTRE, you shouldn't use .wpi_talonsrx.TalonSRX
         # and should use .wpi_talonsrx.WPI_TalonSRX, but that class
         # does not implement the setMode function its base class needs it
-        # to. So, moral of the story is, don't trust CTRE's documentation :D
+        # to. So, the moral of the story is: don't trust CTRE's documentation :D
         self.frontLeftMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.frontLeftMotor)
         self.frontRightMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.frontRightMotor)
         self.rearLeftMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.rearLeftMotor)
@@ -38,6 +38,8 @@ class Drivetrain(Subsystem):
 
         self.lastMoveValue = 0
         self.lastRotateValue = 0
+
+        self.gyro = wpilib.ADXRS450_Gyro()
 
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
@@ -57,12 +59,20 @@ class Drivetrain(Subsystem):
     def getRotate(self):
         return self.lastRotateValue
 
+    def getAngle(self):
+        return self.gyro.getAngle()
+
+    def getRotationRate(self):
+        return self.gyro.getRate()
+
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
+        wpilib.SmartDashboard.putNumber('Angle', self.getAngle())
+        wpilib.SmartDashboard.putNumber('Rotation Rate', self.getRotationRate())
 
     def saveOutput(self):
-        return 'move: {0}\rotate: {1}\n'.format(self.getSpeed(), self.getRotate())
+        return 'move: {0}\nturn: {1}\nangle: {2}\n'.format(self.getSpeed(), self.getRotate(), self.getAngle())
 
     def playFromRecording(self, recording):
         '''
@@ -77,5 +87,8 @@ class Drivetrain(Subsystem):
                 moveValue = float(l.rstrip()[len('move: '):])
             elif l.startswith('turn'):
                 turnValue = float(l.rstrip()[len('turn: '):])
+            elif l.startswith('angle'):
+                # TODO: Implement turning from recording
+                print('TODO: Implement turning from recording')
 
         self.drive(moveValue, turnValue)
