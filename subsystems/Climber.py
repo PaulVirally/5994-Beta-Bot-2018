@@ -2,7 +2,6 @@ import wpilib
 from wpilib.command.subsystem import Subsystem
 
 import RobotMap
-import subsystems
 
 class Climber(Subsystem):
     '''
