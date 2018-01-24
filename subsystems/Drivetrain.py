@@ -16,20 +16,13 @@ class Drivetrain(Subsystem):
 
         super().__init__('Drivetrain')
 
-        # Don't listen to the documentation
-        # According to CTRE, you shouldn't use .wpi_talonsrx.TalonSRX
-        # and should use .wpi_talonsrx.WPI_TalonSRX, but that class
-        # does not implement the setMode function its base class needs it
-        # to. So, the moral of the story is: don't trust CTRE's documentation :D
-        self.frontLeftMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.frontLeftMotor)
-        self.frontRightMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.frontRightMotor)
-        self.rearLeftMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.rearLeftMotor)
-        self.rearRightMotor =  ctre.wpi_talonsrx.TalonSRX(RobotMap.drivetrain.rearRightMotor)
+        self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
+        self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
+        self.rearLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
+        self.rearRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
 
-        self.drivetrain = wpilib.RobotDrive(RobotMap.drivetrain.frontLeftMotor,
-                                           RobotMap.drivetrain.rearLeftMotor,
-                                           RobotMap.drivetrain.frontRightMotor,
-                                           RobotMap.drivetrain.rearRightMotor)
+        self.drivetrain = wpilib.RobotDrive(self.frontLeftMotor, self.rearLeftMotor,
+                                            self.frontRightMotor, self.rearRightMotor)
                                             
         self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, True)
         self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
