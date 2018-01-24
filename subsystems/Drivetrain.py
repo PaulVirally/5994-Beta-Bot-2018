@@ -1,6 +1,7 @@
 import wpilib
 import ctre
 from wpilib.command.subsystem import Subsystem
+from wpilib.drive.differentialdrive import DifferentialDrive
 
 from commands.SmoothFollowJoystick import SmoothFollowJoystick
 import RobotMap
@@ -21,13 +22,15 @@ class Drivetrain(Subsystem):
         self.rearLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
         self.rearRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
 
-        self.drivetrain = wpilib.RobotDrive(self.frontLeftMotor, self.rearLeftMotor,
-                                            self.frontRightMotor, self.rearRightMotor)
-                                            
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontLeftMotor, True)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearLeftMotor, False)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.frontRightMotor, True)
-        self.drivetrain.setInvertedMotor(RobotMap.drivetrain.rearRightMotor, False)
+        self.frontLeftMotor.setInverted(True)
+        self.rearLeftMotor.setInverted(False)
+        self.frontRightMotor.setInverted(True)
+        self.rearRightMotor.setInverted(False)
+        
+        self.leftMotors = wpilib.SpeedControllerGroup(self.frontLeftMotor, self.rearLeftMotor)
+        self.rightMotors = wpilib.SpeedControllerGroup(self.frontRightMotor, self.rearLeftMotor)
+
+        self.drivetrain = DifferentialDrive(self.leftMotors, self.rightMotors)
 
         self.lastMoveValue = 0
         self.lastRotateValue = 0
