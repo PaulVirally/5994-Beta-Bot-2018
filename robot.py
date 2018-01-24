@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
+from commands.Autonomous import AutonomousProgram
 import wpilib
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
-
 import subsystems
 import OI
-from commands.Autonomous import AutonomousProgram
 
 class Robot(CommandBasedRobot):
     '''
