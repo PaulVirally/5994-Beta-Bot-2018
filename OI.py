@@ -1,7 +1,3 @@
-import wpilib
-from wpilib.joystick import Joystick
-from wpilib.buttons.joystickbutton import JoystickButton
-
 from commands.Brake import Brake
 from commands.LockStraight import LockStraight
 from commands.ReverseDrive import ReverseDrive
@@ -12,6 +8,9 @@ from commands.Drop import Drop
 from commands.PlayBack import PlayBack
 # from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
+import wpilib
+from wpilib.joystick import Joystick
+from wpilib.buttons.joystickbutton import JoystickButton
 
 import RobotMap
 
