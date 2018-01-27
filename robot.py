@@ -38,7 +38,6 @@ class Robot(CommandBasedRobot):
         # Initialize the camera server
         wpilib.CameraServer.launch()
 
-
     def autonomousInit(self):
         '''
         You should call start on your autonomous program here. You can
