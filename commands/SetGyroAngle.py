@@ -1,8 +1,5 @@
 from wpilib.command import Command
-
-import OI
 import subsystems
-import Utils
 
 class SetGyroAngle(Command):
     '''
