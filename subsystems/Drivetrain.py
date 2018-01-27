@@ -7,15 +7,19 @@ from commands.SmoothFollowJoystick import SmoothFollowJoystick
 import RobotMap
 import subsystems
 
-class Drivetrain(Subsystem):
+class Drivetrain(wpilib.command.PIDSubsystem):
     '''
     This is the drivetrain subsystem
     '''
 
-    def __init__(self):
+    def __init__(self, p, i, d):
         '''Instantiates the drivetrain object.'''
 
-        super().__init__('Drivetrain')
+        # Pid stuff
+        super().__init__(p, i, d, name='Drivetrain')
+        self.setAbsoluteTolerance(0.05)
+        self.setInputRange(0, 360)
+        self.setOutputRange(-1, 1)
 
         self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
         self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
@@ -37,6 +41,21 @@ class Drivetrain(Subsystem):
 
         self.gyro = wpilib.ADXRS450_Gyro()
 
+
+    def returnPIDInput(self):
+        return self.getAngle()
+
+    def usePIDOutput(self, output):
+        self.drivetrain.arcadeDrive(0, output)
+        self.lastMoveValue = 0
+        self.lastRotateValue = output
+
+    def enablePID(self):
+        self.enable()
+
+    def disablePID(self):
+        self.disable()
+
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
@@ -56,7 +75,7 @@ class Drivetrain(Subsystem):
         return self.lastRotateValue
 
     def getAngle(self):
-        return self.gyro.getAngle()
+        return self.gyro.getAngle() % 360
 
     def getRotationRate(self):
         return self.gyro.getRate()
@@ -66,6 +85,7 @@ class Drivetrain(Subsystem):
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle())
         wpilib.SmartDashboard.putNumber('Rotation Rate', self.getRotationRate())
+        wpilib.SmartDashboard.putNumber('Gyro PID Position', self.getPosition())
 
     def saveOutput(self):
         return 'move: {0}\nturn: {1}\nangle: {2}\n'.format(self.getSpeed(), self.getRotate(), self.getAngle())
