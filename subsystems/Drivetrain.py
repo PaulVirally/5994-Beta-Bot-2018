@@ -41,7 +41,6 @@ class Drivetrain(wpilib.command.PIDSubsystem):
 
         self.gyro = wpilib.ADXRS450_Gyro()
 
-
     def returnPIDInput(self):
         return self.getAngle()
 
