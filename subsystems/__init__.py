@@ -31,7 +31,7 @@ def init():
     called more than once in that case.
     '''
 
-    drivetrain = Drivetrain()
+    drivetrain = Drivetrain(1, 0.1, 0) # PID
     climber = Climber()
 
     subsystems = [drivetrain, climber]

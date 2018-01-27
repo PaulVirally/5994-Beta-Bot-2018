@@ -21,7 +21,8 @@ buttons = {
     'drop'             : 8,
     'preciseDrive'     : 7,
     'recordCenterAuto' : 10,
-    'playCenterAuto'   : 11
+    'playCenterAuto'   : 11,
+    'setGyro45'        : 8
 }
 buttons = dotdict(buttons)
 
@@ -42,7 +43,7 @@ climber = dotdict(climber)
 
 # Default parameters assignment
 defaults = {
-    'speedSensitivity'   : 4,
-    'turningSensitivity' : 4
+    'speedSensitivity'   : 1.5,
+    'turningSensitivity' : 1.5
 }
 defaults = dotdict(defaults)

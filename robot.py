@@ -35,6 +35,9 @@ class Robot(CommandBasedRobot):
         '''
         OI.init()
 
+        # Initialize the camera server
+        wpilib.CameraServer.launch()
+
 
     def autonomousInit(self):
         '''

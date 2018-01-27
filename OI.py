@@ -6,8 +6,8 @@ from commands.HoldClimb import HoldClimb
 from commands.StopClimb import StopClimb
 from commands.Drop import Drop
 from commands.PlayBack import PlayBack
-# from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
+from commands.SetGyroAngle import SetGyroAngle
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
@@ -29,21 +29,24 @@ def init():
     brakeButton = JoystickButton(joystick, RobotMap.buttons.brake)
     brakeButton.whileHeld(Brake())
 
-    lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
-    lockStraightButton.whileHeld(LockStraight())
-    
-    reverseDriveButton = JoystickButton(joystick, RobotMap.buttons.reverseDrive)
-    reverseDriveButton.whileHeld(ReverseDrive())
-    
-    climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
-    climbButton.whileHeld(Climb())
-    climbButton.whenReleased(HoldClimb())
+    setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
+    setGyro45Button.whenPressed(SetGyroAngle(45))
 
-    stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
-    stopClimbButton.whenPressed(StopClimb())
+    # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
+    # lockStraightButton.whileHeld(LockStraight())
+    
+    # reverseDriveButton = JoystickButton(joystick, RobotMap.buttons.reverseDrive)
+    # reverseDriveButton.whileHeld(ReverseDrive())
+    
+    # climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
+    # climbButton.whileHeld(Climb())
+    # climbButton.whenReleased(HoldClimb())
 
-    dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
-    dropButton.whileHeld(Drop())
+    # stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
+    # stopClimbButton.whenPressed(StopClimb())
+
+    # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
+    # dropButton.whileHeld(Drop())
 
     # TODO:
     # preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
@@ -72,5 +75,5 @@ def getTurnSmoothing():
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
-    wpilib.SmartDashboard.putNumber('Speed Sensitivity', RobotMap.defaults.speedSensitivity)
-    wpilib.SmartDashboard.putNumber('Turning Sensitivity', RobotMap.defaults.turningSensitivity)
+    # wpilib.SmartDashboard.putNumber('Speed Sensitivity', RobotMap.defaults.speedSensitivity)
+    # wpilib.SmartDashboard.putNumber('Turning Sensitivity', RobotMap.defaults.turningSensitivity)
