@@ -1,10 +1,10 @@
 from commands.Brake import Brake
-from commands.LockStraight import LockStraight
-from commands.ReverseDrive import ReverseDrive
-from commands.Climb import Climb
-from commands.HoldClimb import HoldClimb
-from commands.StopClimb import StopClimb
-from commands.Drop import Drop
+# from commands.LockStraight import LockStraight
+# from commands.ReverseDrive import ReverseDrive
+# from commands.Climb import Climb
+# from commands.HoldClimb import HoldClimb
+# from commands.StopClimb import StopClimb
+# from commands.Drop import Drop
 from commands.PlayBack import PlayBack
 from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
