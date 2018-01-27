@@ -17,7 +17,7 @@ class Drivetrain(wpilib.command.PIDSubsystem):
 
         # Pid stuff
         super().__init__(p, i, d, name='Drivetrain')
-        self.setAbsoluteTolerance(0.05)
+        self.setAbsoluteTolerance(1) # 1 degree tolerance
         self.setInputRange(0, 360)
         self.setOutputRange(-1, 1)
 
