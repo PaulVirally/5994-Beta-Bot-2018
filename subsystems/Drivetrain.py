@@ -83,7 +83,7 @@ class Drivetrain(wpilib.command.PIDSubsystem):
     def getRangeFinderDistance(self):
         voltage = self.rangeFinder.getVoltage()
         try:
-            distance = (5/1024)/voltage # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
+            distance = voltage/(5/1024) # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
             return distance
         except ZeroDivisionError:
             return 0
