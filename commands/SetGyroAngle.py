@@ -11,10 +11,10 @@ class SetGyroAngle(Command):
 
         self.requires(subsystems.drivetrain)
         self.target = angle
+        subsystems.drivetrain.setSetpoint((subsystems.drivetrain.getAngle() + self.target) % 360)        
 
     def execute(self):
         subsystems.drivetrain.enablePID()
-        subsystems.drivetrain.setSetpoint(self.target)
 
     def stop(self):
         subsystems.drivetrain.disablePID()
