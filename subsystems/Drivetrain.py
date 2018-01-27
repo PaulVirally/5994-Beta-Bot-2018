@@ -40,6 +40,7 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         self.lastRotateValue = 0
 
         self.gyro = wpilib.ADXRS450_Gyro()
+        self.rangeFinder = wpilib.AnalogInput(0)
 
     def returnPIDInput(self):
         return self.getAngle()
@@ -79,12 +80,21 @@ class Drivetrain(wpilib.command.PIDSubsystem):
     def getRotationRate(self):
         return self.gyro.getRate()
 
+    def getRangeFinderDistance(self):
+        voltage = self.rangeFinder.getVoltage()
+        try:
+            distance = (5/1024)/voltage # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
+            return distance
+        except ZeroDivisionError:
+            return 0
+
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle())
         wpilib.SmartDashboard.putNumber('Rotation Rate', self.getRotationRate())
         wpilib.SmartDashboard.putNumber('Gyro PID Position', self.getPosition())
+        wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
 
     def saveOutput(self):
         return 'move: {0}\nturn: {1}\nangle: {2}\n'.format(self.getSpeed(), self.getRotate(), self.getAngle())
