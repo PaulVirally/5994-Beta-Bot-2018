@@ -9,7 +9,6 @@ from .Drivetrain import Drivetrain
 from .Climber import Climber
 
 drivetrain = None
-climber = None
 subsystems = []
 
 recordedData = ''
@@ -23,7 +22,6 @@ def init():
     instantiated. Do not run it more than once.
     '''
     global drivetrain
-    global climber
     global subsystems
 
     '''
