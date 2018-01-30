@@ -20,8 +20,8 @@ class PreciseDriveWithJoystick(Command):
         joyTurn = OI.getJoyTurn()
 
         # Put the values through the sigmoid function to smooth it out
-        speedSmoothing = OI.getSpeedSmoothing() * 0.1
-        turnSmoothing = OI.getTurnSmoothing() * 0.1
+        speedSmoothing = OI.getSpeedSmoothing() * 0.01
+        turnSmoothing = OI.getTurnSmoothing() * 0.01
 
         sigJoySpeed = 2*Utils.sigmoid(joySpeed, a=speedSmoothing)-1
         sigJoyTurn = 2*Utils.sigmoid(joyTurn, a=turnSmoothing)-1
@@ -33,8 +33,8 @@ class PreciseDriveWithJoystick(Command):
         sn1Turn = 2*Utils.sigmoid(-1, a=turnSmoothing)-1
 
         # Make sure out speed goes from -1 to 1
-        speed = Utils.remap(sigJoySpeed, sn1Speed, s1Speed, -1, 1)
-        turn = -Utils.remap(sigJoyTurn, sn1Turn, s1Turn, -1, 1)
+        speed = Utils.remap(sigJoySpeed, sn1Speed, s1Speed, -0.4, 0.4)
+        turn = -Utils.remap(sigJoyTurn, sn1Turn, s1Turn, -0.4, 0.4)
 
         # Drive
         subsystems.drivetrain.drive(speed, turn)
