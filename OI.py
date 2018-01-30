@@ -49,7 +49,6 @@ def init():
     # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
     # dropButton.whileHeld(Drop())
 
-    # TODO:
     preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
 
