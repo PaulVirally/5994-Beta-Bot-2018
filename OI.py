@@ -5,6 +5,7 @@ from commands.Brake import Brake
 # from commands.HoldClimb import HoldClimb
 # from commands.StopClimb import StopClimb
 # from commands.Drop import Drop
+from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.PlayBack import PlayBack
 from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
@@ -49,8 +50,8 @@ def init():
     # dropButton.whileHeld(Drop())
 
     # TODO:
-    # preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
-    # preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
+    preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
+    preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
 
     centerRecordButton = JoystickButton(joystick, RobotMap.buttons.recordCenterAuto)
     centerRecordButton.whenPressed(Record('/home/lvuser/center_auto.auto'))
