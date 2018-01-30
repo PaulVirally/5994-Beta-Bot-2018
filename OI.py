@@ -53,10 +53,10 @@ def init():
     # preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
 
     centerRecordButton = JoystickButton(joystick, RobotMap.buttons.recordCenterAuto)
-    centerRecordButton.whenPressed(Record('center_auto.auto'))
+    centerRecordButton.whenPressed(Record('/home/lvuser/center_auto.auto'))
 
     playCenterButton = JoystickButton(joystick, RobotMap.buttons.playCenterAuto)
-    playCenterButton.whileHeld(PlayBack('center_auto.auto'))
+    playCenterButton.whileHeld(PlayBack('/home/lvuser/center_auto.auto'))
 
 def getJoyTurn():
     joyX = joystick.getX()
@@ -75,5 +75,3 @@ def getTurnSmoothing():
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
-    # wpilib.SmartDashboard.putNumber('Speed Sensitivity', RobotMap.defaults.speedSensitivity)
-    # wpilib.SmartDashboard.putNumber('Turning Sensitivity', RobotMap.defaults.turningSensitivity)

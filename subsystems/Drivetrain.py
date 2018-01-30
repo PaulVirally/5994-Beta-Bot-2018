@@ -19,7 +19,7 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         super().__init__(p, i, d, name='Drivetrain')
         self.setAbsoluteTolerance(1) # 1 degree tolerance
         self.setInputRange(0, 360)
-        self.setOutputRange(-1, 1)
+        self.setOutputRange(0, 1)
 
         self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
         self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
@@ -27,12 +27,12 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         self.rearRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearRightMotor)
 
         self.frontLeftMotor.setInverted(True)
-        self.rearLeftMotor.setInverted(False)
+        self.rearLeftMotor.setInverted(True)
         self.frontRightMotor.setInverted(True)
-        self.rearRightMotor.setInverted(False)
+        self.rearRightMotor.setInverted(True)
         
         self.leftMotors = wpilib.SpeedControllerGroup(self.frontLeftMotor, self.rearLeftMotor)
-        self.rightMotors = wpilib.SpeedControllerGroup(self.frontRightMotor, self.rearLeftMotor)
+        self.rightMotors = wpilib.SpeedControllerGroup(self.frontRightMotor, self.rearRightMotor)
 
         self.drivetrain = DifferentialDrive(self.leftMotors, self.rightMotors)
 
@@ -46,6 +46,8 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         return self.getAngle()
 
     def usePIDOutput(self, output):
+        if self.getAngle() <= self.getSetpoint():
+            output *= -1
         self.drivetrain.arcadeDrive(0, output)
         self.lastMoveValue = 0
         self.lastRotateValue = output
@@ -75,25 +77,30 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         return self.lastRotateValue
 
     def getAngle(self):
-        return self.gyro.getAngle() % 360
+        return self.gyro.getAngle()
+
+    def resetGyro(self):
+        self.gyro.reset()
 
     def getRotationRate(self):
         return self.gyro.getRate()
 
     def getRangeFinderDistance(self):
-        voltage = self.rangeFinder.getVoltage()
-        try:
-            distance = voltage/(5/1024) # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
-            return distance
-        except ZeroDivisionError:
-            return 0
+        # return self.rangeFinder.getVoltage()
+        voltage = self.rangeFinder.getAverageVoltage()
+        voltage -= 0.28
+        distance = 100 * 1.3168135 * voltage # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
+        return distance
 
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
-        wpilib.SmartDashboard.putNumber('Angle', self.getAngle())
+        wpilib.SmartDashboard.putNumber('Absolute Angle', self.getAngle())
+        wpilib.SmartDashboard.putNumber('Angle', self.getAngle() % 360)
         wpilib.SmartDashboard.putNumber('Rotation Rate', self.getRotationRate())
         wpilib.SmartDashboard.putNumber('Gyro PID Position', self.getPosition())
+        wpilib.SmartDashboard.putNumber('Gyro PID Setpoint', self.getSetpoint())
+        wpilib.SmartDashboard.putNumber('Gyro PID Error', self.getPosition() - self.getSetpoint())
         wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
 
     def saveOutput(self):

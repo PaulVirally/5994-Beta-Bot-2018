@@ -29,7 +29,7 @@ def init():
     called more than once in that case.
     '''
 
-    drivetrain = Drivetrain(0.1, 0.01, 0) # PID
+    drivetrain = Drivetrain(0.7, 15, 3) # PID
     climber = Climber()
 
     subsystems = [drivetrain, climber]
@@ -53,14 +53,15 @@ def saveOutput():
     recordedData += lineBreak
 
 def writeOutput(filePath):
-    with open(filePath, 'w+') as outFile:
+    with open(filePath, 'w') as outFile:
+        print('PLEEEEEEEASE WOOOOOOORK')
         outFile.write(recordedData)
 
 def readRecording(filePath):
     global toPlayBack
     try:
         with open(filePath, 'r') as inFile:
-            toPlayBack = inFile.read()
+            toPlayBack = inFile.readlines()
     except FileNotFoundError:
         print('[ERROR] subsystems::__init__::readRecording(...) Could not open {0}'.format(filePath))
 

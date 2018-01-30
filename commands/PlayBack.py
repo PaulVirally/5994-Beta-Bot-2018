@@ -8,7 +8,7 @@ class PlayBack(Command):
     '''
 
     def __init__(self, filePath):
-        super().__init__('Record')
+        super().__init__('Play Back')
         
         subsystems.readRecording(filePath)
 

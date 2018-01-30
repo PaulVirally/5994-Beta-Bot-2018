@@ -11,15 +11,18 @@ class Record(InstantCommand):
     def __init__(self, filePath):
         super().__init__('Record')
         self.filePath = filePath
+        print('Record.__init__()')
 
     def initialize(self):
         global subsystems
+        
+        # Invert the state
+        subsystems.shouldRecord = not subsystems.shouldRecord
 
-        # If it was in recording mode, stop recording and save the output
+        # If it was in recording mode, save the output
         if subsystems.shouldRecord:
-            subsystems.shouldRecord = False
+            print('Recording started')
             subsystems.writeOutput(self.filePath)
 
-        # If it was not in recording mode, set it to recording mode
         else:
-            subsystems.shouldRecord = True
+            print('Recording ended')
