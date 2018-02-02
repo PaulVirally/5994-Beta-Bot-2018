@@ -1,5 +1,5 @@
 import time
-from Utils import remap
+import Utils
 from wpilib.command import Command
 import subsystems
 
@@ -35,7 +35,7 @@ class SetGyroAngle(Command):
         maxPropAdjust = maxError * propK
         maxAdjust = maxTimeAdj + maxPropAdjust
 
-        turn = remap(adjust, 0, maxAdjust, 0, 1)
+        turn = Utils.remap(adjust, 0, maxAdjust, 0, 1)
         if error > 0:
             turn *= -1
 
