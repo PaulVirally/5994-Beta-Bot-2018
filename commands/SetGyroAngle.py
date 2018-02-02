@@ -1,3 +1,5 @@
+import time
+from Utils import remap
 from wpilib.command import Command
 import subsystems
 
@@ -10,18 +12,37 @@ class SetGyroAngle(Command):
         super().__init__('SetGyroAngle')
 
         self.requires(subsystems.drivetrain)
-        # a = subsystems.drivetrain.getAngle()
-        # a360 =  a % 360
-        # subsystems.drivetrain.setInputRange(a - a360, a + a360)
-        # subsystems.drivetrain.setSetpoint(a + target_angle)
+        self.target_angle = target_angle
+
+    def initialize(self):
         subsystems.drivetrain.resetGyro()
-        subsystems.drivetrain.setSetpoint(target_angle)
+        subsystems.drivetrain.setSetpoint(self.target_angle)
+        self.startTime = time.time()
 
     def execute(self):
-        subsystems.drivetrain.enablePID()
+        error = subsystems.drivetrain.getError()
+        dt = time.time() - self.startTime
+        maxError = 360
+
+        timeK = 0.01
+        propK = 1
+
+        timeAdjust = dt * error * timeK
+        propAdjust = error * propK
+        adjust = timeAdjust + propAdjust
+
+        maxTimeAdj = dt * maxError * timeK
+        maxPropAdjust = maxError * propK
+        maxAdjust = maxTimeAdj + maxPropAdjust
+
+        turn = remap(adjust, 0, maxAdjust, 0, 1)
+        if error > 0:
+            turn *= -1
+
+        subsystems.drivetrain.drive(0, turn)
 
     def stop(self):
-        subsystems.drivetrain.disablePID()
+        subsystems.drivetrain.stop()
 
     def isFinished(self):
-        return subsystems.drivetrain.onTarget()
+        return subsystems.drivetrain.getError() <= 1
