@@ -6,9 +6,10 @@ for it in the global scope.
 from wpilib.robotbase import RobotBase
 
 from .Drivetrain import Drivetrain
-from .Climber import Climber
+from .Elevator import Elevator
 
 drivetrain = None
+elevator = None
 subsystems = []
 
 recordedData = ''
@@ -22,17 +23,13 @@ def init():
     instantiated. Do not run it more than once.
     '''
     global drivetrain
+    global elevator
     global subsystems
 
-    '''
-    Some tests call startCompetition multiple times, so don't throw an error if
-    called more than once in that case.
-    '''
-
     drivetrain = Drivetrain(0.7, 15, 3) # PID
-    climber = Climber()
+    elevator = Elevator()
 
-    subsystems = [drivetrain, climber]
+    subsystems = [drivetrain, elevator]
 
 def stop():
     for subsys in subsystems:
