@@ -23,7 +23,6 @@ class Robot(CommandBasedRobot):
         '''
 
         subsystems.init()
-        print('ROBOT INIT')
 
         self.autoChooser = wpilib.SendableChooser()
         self.autoChooser.addDefault('autonomous', AutonomousProgram())

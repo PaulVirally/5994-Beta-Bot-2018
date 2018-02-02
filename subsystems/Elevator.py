@@ -12,7 +12,7 @@ class Elevator(Subsystem):
         '''Instantiates the Elevator object.'''
 
         super().__init__('Elevator')
-        self.limitSwtich = wpilib.DigitalInput(0)
+        self.limitSwitch = wpilib.DigitalInput(0)
 
     def stop(self):
         pass
@@ -21,7 +21,7 @@ class Elevator(Subsystem):
         pass
 
     def log(self):
-        wpilib.SmartDashboard.putBoolean('Limit Switch State', self.limitSwtich.get())
+        wpilib.SmartDashboard.putBoolean('Limit Switch State', self.limitSwitch.get())
 
     def saveOutput(self):
         pass

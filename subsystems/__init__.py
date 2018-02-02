@@ -26,7 +26,7 @@ def init():
     global elevator
     global subsystems
 
-    drivetrain = Drivetrain(0.7, 15, 3) # PID
+    drivetrain = Drivetrain()
     elevator = Elevator()
 
     subsystems = [drivetrain, elevator]

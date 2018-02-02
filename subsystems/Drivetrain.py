@@ -7,20 +7,15 @@ from commands.SmoothFollowJoystick import SmoothFollowJoystick
 import RobotMap
 import subsystems
 
-class Drivetrain(wpilib.command.PIDSubsystem):
+class Drivetrain(Subsystem):
     '''
     This is the drivetrain subsystem
     '''
 
-    def __init__(self, p, i, d):
+    def __init__(self):
         '''Instantiates the drivetrain object.'''
 
-        # Pid stuff
-        super().__init__(p, i, d, name='Drivetrain')
-        self.setAbsoluteTolerance(1) # 1 degree tolerance
-        self.setInputRange(0, 360)
-        self.setOutputRange(0, 1)
-
+        super().__init__('Drivetrain')
         self.frontLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontLeftMotor)
         self.frontRightMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.frontRightMotor)
         self.rearLeftMotor =  ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.drivetrain.rearLeftMotor)
@@ -40,29 +35,21 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         self.lastRotateValue = 0
 
         self.gyro = wpilib.ADXRS450_Gyro()
+        self.setpoint = 0
+        
         self.rangeFinder = wpilib.AnalogInput(0)
-
-    def returnPIDInput(self):
-        return self.getAngle()
-
-    def usePIDOutput(self, output):
-        if self.getAngle() <= self.getSetpoint():
-            output *= -1
-        self.drivetrain.arcadeDrive(0, output)
-        self.lastMoveValue = 0
-        self.lastRotateValue = output
-
-    def enablePID(self):
-        self.enable()
-
-    def disablePID(self):
-        self.disable()
 
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
         self.lastMoveValue = moveValue
         self.lastRotateValue = rotateValue
+
+    def setSetpoint(self, setpoint):
+        self.setpoint = setpoint
+
+    def getError(self):
+        return self.getAngle() - self.setpoint
 
     def stop(self):
         self.drive(0, 0)
@@ -97,10 +84,7 @@ class Drivetrain(wpilib.command.PIDSubsystem):
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
         wpilib.SmartDashboard.putNumber('Absolute Angle', self.getAngle())
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle() % 360)
-        wpilib.SmartDashboard.putNumber('Rotation Rate', self.getRotationRate())
-        wpilib.SmartDashboard.putNumber('Gyro PID Position', self.getPosition())
-        wpilib.SmartDashboard.putNumber('Gyro PID Setpoint', self.getSetpoint())
-        wpilib.SmartDashboard.putNumber('Gyro PID Error', self.getPosition() - self.getSetpoint())
+        wpilib.SmartDashboard.putNumber('Gyro homemade \'PID\' Error', self.getError())
         wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
 
     def saveOutput(self):
