@@ -35,11 +35,12 @@ drivetrain = {
 }
 drivetrain = dotdict(drivetrain)
 
-# Climber motor assignment
-climber = {
-    'motor' : 4
+# Elevator motor assignment
+elevator = {
+    'motor' : 0,
+    'limitSwitch': 0
 }
-climber = dotdict(climber)
+elevator = dotdict(elevator)
 
 # Default parameters assignment
 defaults = {
