@@ -12,19 +12,33 @@ class Elevator(Subsystem):
         '''Instantiates the Elevator object.'''
 
         super().__init__('Elevator')
-        self.limitSwitch = wpilib.DigitalInput(0)
+        self.limitSwitch = wpilib.DigitalInput(RobotMap.elevator.limitSwitch)
+        self.motor = wpilib.VictorSP(RobotMap.elevator.motor)
+        self.lastMotorValue = 0
+
+    def _set(self, pwm):
+        self.motor.set(pwm)
+        self.lastMotorValue = pwm
+
+    def hold(self):
+        self._set(0.2)
+
+    def up(self):
+        self._set(0.5)
+
+    def down(self):
+        self._set(0.05)
 
     def stop(self):
-        pass
-
-    def getOutput(self):
-        pass
+        self.motor.set(0)
+        self.lastMotorValue = 0        
 
     def log(self):
         wpilib.SmartDashboard.putBoolean('Limit Switch State', self.limitSwitch.get())
+        wpilib.SmartDashboard.putBoolean('Elevator PWM', self.lastMotorValue)
 
     def saveOutput(self):
-        pass
+        return ''
 
     def playFromRecording(self, recording):
         '''
