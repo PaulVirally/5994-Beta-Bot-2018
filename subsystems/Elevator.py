@@ -1,6 +1,5 @@
 import wpilib
 from wpilib.command.subsystem import Subsystem
-
 import RobotMap
 
 class Elevator(Subsystem):
