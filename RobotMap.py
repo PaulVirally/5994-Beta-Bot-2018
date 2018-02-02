@@ -37,7 +37,7 @@ drivetrain = dotdict(drivetrain)
 
 # Elevator motor assignment
 elevator = {
-    'motor' : 0,
+    'motor'      : 0,
     'limitSwitch': 0
 }
 elevator = dotdict(elevator)
