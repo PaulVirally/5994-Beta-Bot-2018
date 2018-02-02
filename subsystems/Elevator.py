@@ -20,6 +20,15 @@ class Elevator(Subsystem):
         self.lastMotorValue = pwm
 
     def hold(self):
+        #########################################
+        #           ###################         #
+        #           # SUPER IMPORTANT #         #
+        #           ###################         #
+        # Don't forget that when you want the   #
+        # winch to go, you need to raise the    #
+        # elevator by a tad so as to not break  #
+        # everything and get people mad at you  #
+        #########################################
         self._set(0.2)
 
     def up(self):
