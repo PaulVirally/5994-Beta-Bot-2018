@@ -36,7 +36,7 @@ class Drivetrain(Subsystem):
 
         self.gyro = wpilib.ADXRS450_Gyro()
         self.setpoint = 0
-        
+
         self.rangeFinder = wpilib.AnalogInput(0)
 
     def drive(self, moveValue, rotateValue):
@@ -86,6 +86,14 @@ class Drivetrain(Subsystem):
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle() % 360)
         wpilib.SmartDashboard.putNumber('Gyro homemade \'PID\' Error', self.getError())
         wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
+        wpilib.SmartDashboard.putNumber('Encoder PW Position', self.rearLeftMotor.getPulseWidthPosition())
+        wpilib.SmartDashboard.putNumber('Encoder PW Rise to Fall (us)', self.rearLeftMotor.getPulseWidthRiseToFallUs())
+        wpilib.SmartDashboard.putNumber('Encoder PW Rise to Rise (us)', self.rearLeftMotor.getPulseWidthRiseToRiseUs())
+        wpilib.SmartDashboard.putNumber('Encoder PW Velo', self.rearLeftMotor.getPulseWidthVelocity())
+        wpilib.SmartDashboard.putNumber('Encoder Rev Per Sec', self.rearLeftMotor.getPulseWidthVelocity()/409.6)
+        wpilib.SmartDashboard.putNumber('Encoder Quad Pos', self.rearLeftMotor.getQuadraturePosition())
+        wpilib.SmartDashboard.putNumber('Encoder Quad Velo', self.rearLeftMotor.getQuadratureVelocity())
+        wpilib.SmartDashboard.putNumber('Encoder Temp', self.rearLeftMotor.getTemperature())
 
     def saveOutput(self):
         return 'move: {0}\nturn: {1}\nangle: {2}\n'.format(self.getSpeed(), self.getRotate(), self.getAngle())
