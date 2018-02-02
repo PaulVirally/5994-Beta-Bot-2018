@@ -5,7 +5,7 @@ import subsystems
 
 class SetGyroAngle(Command):
     '''
-    Sets the gyro to a specified angle by using a PID control loop.
+    Sets the gyro to a specified angle by using a "PID" control loop.
     '''
 
     def __init__(self, target_angle):
@@ -45,4 +45,4 @@ class SetGyroAngle(Command):
         subsystems.drivetrain.stop()
 
     def isFinished(self):
-        return subsystems.drivetrain.getError() <= 1
+        return abs(subsystems.drivetrain.getError()) <= 1
