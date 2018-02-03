@@ -1,3 +1,4 @@
+import time
 import wpilib
 import ctre
 from wpilib.command.subsystem import Subsystem
@@ -39,6 +40,10 @@ class Drivetrain(Subsystem):
 
         self.rangeFinder = wpilib.AnalogInput(0)
 
+        self.didResetRevos = True
+        self.startTime = 0
+        self.revoVelos = []
+
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
@@ -79,6 +84,37 @@ class Drivetrain(Subsystem):
         distance = 100 * 1.3168135 * voltage # Refer to https://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
         return distance
 
+    def _getRevPerSec(self):
+        return self.rearLeftMotor.getPulseWidthVelocity()/409.6
+
+    def updateRevolutionCounter(self):
+        if self.didResetRevos:
+            self.didResetRevos = False
+            self.startTime = time.time()
+            self.revoVelos = [(0, self._getRevPerSec())]
+            return
+        
+        self.revoVelos.append((time.time() - self.startTime, self._getRevPerSec()))
+
+    def resetRevolutionCounter(self):
+        self.didResetRevos = True
+
+    def getRevolutions(self):
+        # Integrate the revoVelos list
+        # The first index of the revoVelos list is a time
+        # The second index is the revs per sec
+        # Integrate to get total revolutions over a certain period
+        print(self.revoVelos)
+        integral = 0
+        for i in range(len(self.revoVelos) - 1):
+            dt = self.revoVelos[i+1][0] - self.revoVelos[i][0]
+            y = self.revoVelos[i][1]
+            integral += dt*y
+        return integral
+
+    def update(self):
+        self.updateRevolutionCounter()
+
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
@@ -86,13 +122,8 @@ class Drivetrain(Subsystem):
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle() % 360)
         wpilib.SmartDashboard.putNumber('Gyro homemade \'PID\' Error', self.getError())
         wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
-        wpilib.SmartDashboard.putNumber('Encoder PW Position', self.rearLeftMotor.getPulseWidthPosition())
-        wpilib.SmartDashboard.putNumber('Encoder PW Rise to Fall (us)', self.rearLeftMotor.getPulseWidthRiseToFallUs())
-        wpilib.SmartDashboard.putNumber('Encoder PW Rise to Rise (us)', self.rearLeftMotor.getPulseWidthRiseToRiseUs())
-        wpilib.SmartDashboard.putNumber('Encoder PW Velo', self.rearLeftMotor.getPulseWidthVelocity())
-        wpilib.SmartDashboard.putNumber('Encoder Rev Per Sec', self.rearLeftMotor.getPulseWidthVelocity()/409.6)
-        wpilib.SmartDashboard.putNumber('Encoder Quad Pos', self.rearLeftMotor.getQuadraturePosition())
-        wpilib.SmartDashboard.putNumber('Encoder Quad Velo', self.rearLeftMotor.getQuadratureVelocity())
+        wpilib.SmartDashboard.putNumber('Encoder Rev Per Sec', self._getRevPerSec())
+        wpilib.SmartDashboard.putNumber('Total Revolutions', self.getRevolutions())
         wpilib.SmartDashboard.putNumber('Encoder Temp', self.rearLeftMotor.getTemperature())
 
     def saveOutput(self):
