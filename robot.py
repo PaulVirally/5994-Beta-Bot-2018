@@ -36,7 +36,7 @@ class Robot(CommandBasedRobot):
         OI.init()
 
         # Initialize the camera server
-        wpilib.CameraServer.launch()
+        wpilib.CameraServer.launch('vision.py:main')
 
     def autonomousInit(self):
         '''
@@ -51,7 +51,7 @@ class Robot(CommandBasedRobot):
     def autonomousPeriodic(self):
         '''This function is called periodically during autonomous.'''
         Scheduler.getInstance().run()
-        self.log()
+        subsystems.update()
 
     def teleopInit(self):
         '''This function is called at the beginning of operator control.'''
@@ -59,12 +59,13 @@ class Robot(CommandBasedRobot):
         # teleop starts running.
         if self.autonomousCommand is not None:
             print('[ROBOT] Cancelling the autonomous command...')
-            self.autonomousCommand.cancel()
+            self.autonomousCommand.cancel()        
 
     def teleopPeriodic(self):
         '''This function is called periodically during operator control.'''
         Scheduler.getInstance().run()
         self.log()
+        subsystems.update()        
 
     def disabledInit(self):
         '''This function is called once when the robot is disabled.'''
@@ -74,6 +75,7 @@ class Robot(CommandBasedRobot):
     def disabledPeriodic(self):
         '''This function is called periodically while disabled.'''
         self.log()
+        subsystems.update()        
 
     def log(self):
         '''Logs all the information from the subsystems and
