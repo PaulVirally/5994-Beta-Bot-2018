@@ -11,9 +11,29 @@ class Elevator(Subsystem):
         '''Instantiates the Elevator object.'''
 
         super().__init__('Elevator')
-        self.limitSwitch = wpilib.DigitalInput(RobotMap.elevator.limitSwitch)
+        self.limitSwitches = [wpilib.DigitalInput(RobotMap.elevator.pos0),
+                              wpilib.DigitalInput(RobotMap.elevator.pos1),
+                              wpilib.DigitalInput(RobotMap.elevator.pos2),
+                              wpilib.DigitalInput(RobotMap.elevator.pos3),
+                              wpilib.DigitalInput(RobotMap.elevator.pos4)]
+
         self.motor = wpilib.VictorSP(RobotMap.elevator.motor)
         self.lastMotorValue = 0
+        self.lastStates = [0, 0, 0, 0, 0]
+        self.pos = 0
+        self.dir = 'stopped'
+
+    def update(self):
+        self.poll()
+
+    def poll(self):
+        newStates = [x.get() for x in self.limitSwitches]
+        changed = [i for x, i in enumerate(newStates) if x]
+        if changed:
+            self.pos = changed[0]
+
+    def inPosition(self):
+        return self.limitSwitches[self.pos].get()
 
     def _set(self, pwm):
         self.motor.set(pwm)
@@ -33,17 +53,21 @@ class Elevator(Subsystem):
 
     def up(self):
         self._set(0.5)
+        self.dir = 'up'
 
     def down(self):
         self._set(0.05)
+        self.dir = 'down'
 
     def stop(self):
-        self.motor.set(0)
-        self.lastMotorValue = 0        
+        self._set(0)
+        self.dir = 'stopped'
 
     def log(self):
-        wpilib.SmartDashboard.putBoolean('Limit Switch State', self.limitSwitch.get())
-        wpilib.SmartDashboard.putBoolean('Elevator PWM', self.lastMotorValue)
+        wpilib.SmartDashboard.putNumber('Elevator Position', self.pos)
+        wpilib.SmartDashboard.putBoolean('Elevator Locked In position', self.inPosition())
+        wpilib.SmartDashboard.putString('Elevator Direction', self.dir)
+        wpilib.SmartDashboard.putNumber('Elevator PWM', self.lastMotorValue)
 
     def saveOutput(self):
         return ''
