@@ -9,6 +9,7 @@ from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.PlayBack import PlayBack
 from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
+from commands.ResetRevolutions import ResetRevolutions
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
@@ -48,6 +49,9 @@ def init():
 
     # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
     # dropButton.whileHeld(Drop())
+
+    resetRevolutionsButton = JoystickButton(joystick, RobotMap.buttons.resetRevolutions)
+    resetRevolutionsButton.whenPressed(ResetRevolutions())
 
     preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
