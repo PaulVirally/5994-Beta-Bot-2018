@@ -31,6 +31,10 @@ def init():
 
     subsystems = [drivetrain, elevator]
 
+def update():
+    for subsys in subsystems:
+        subsys.update()
+
 def stop():
     for subsys in subsystems:
         subsys.stop()
@@ -53,6 +57,7 @@ def writeOutput(filePath):
     with open(filePath, 'w') as outFile:
         print('PLEEEEEEEASE WOOOOOOORK')
         outFile.write(recordedData)
+        outFile.write('This Will Work I promise')
 
 def readRecording(filePath):
     global toPlayBack
