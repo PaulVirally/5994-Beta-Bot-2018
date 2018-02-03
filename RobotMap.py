@@ -22,7 +22,8 @@ buttons = {
     'preciseDrive'     : 7,
     'recordCenterAuto' : 10,
     'playCenterAuto'   : 11,
-    'setGyro45'        : 8
+    'setGyro45'        : 8,
+    'resetRevolutions' : 3
 }
 buttons = dotdict(buttons)
 
@@ -37,8 +38,12 @@ drivetrain = dotdict(drivetrain)
 
 # Elevator motor assignment
 elevator = {
-    'motor'      : 0,
-    'limitSwitch': 0
+    'motor' : 0,
+    'pos0'  : 0,
+    'pos1'  : 1,
+    'pos2'  : 2,
+    'pos3'  : 3,
+    'pos4'  : 4,
 }
 elevator = dotdict(elevator)
 
