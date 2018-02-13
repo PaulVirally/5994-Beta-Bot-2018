@@ -15,6 +15,9 @@ class LockStraight(Command):
 
         self.requires(subsystems.drivetrain)
 
+    def initialize(self):
+        subsystems.drivetrain.resetGyro()
+
     def execute(self):
         # Get the values from the joystick
         joySpeed = OI.getJoySpeed()
@@ -31,8 +34,14 @@ class LockStraight(Command):
         # Make sure out speed goes from -1 to 1
         speed = Utils.remap(sigJoySpeed, sn1Speed, s1Speed, -1, 1)
 
+        # Turn opposite to the angle
+        a = subsystems.drivetrain.getAngle()%360
+        turn = Utils.remap(abs(a), 0, 360, 0, 1)
+        if a > 0:
+            turn *= -1
+
         # Drive
-        subsystems.drivetrain.drive(speed, 0)
+        subsystems.drivetrain.drive(speed, turn)
 
     def stop(self):
         subsystems.drivetrain.stop()
