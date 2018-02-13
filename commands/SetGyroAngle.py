@@ -1,6 +1,7 @@
 import time
 import Utils
 from wpilib.command import Command
+import wpilib
 import subsystems
 
 class SetGyroAngle(Command):
@@ -13,36 +14,55 @@ class SetGyroAngle(Command):
 
         self.requires(subsystems.drivetrain)
         self.target_angle = target_angle
+        self.shouldEndCount = 0
+        wpilib.SmartDashboard.putBoolean('In PID Mode', False)  
+
 
     def initialize(self):
         subsystems.drivetrain.resetGyro()
         subsystems.drivetrain.setSetpoint(self.target_angle)
         self.startTime = time.time()
+        wpilib.SmartDashboard.putBoolean('In PID Mode', True)  
+        
 
     def execute(self):
         error = subsystems.drivetrain.getError()
         dt = time.time() - self.startTime
-        maxError = 360
 
-        timeK = 0.01
-        propK = 1
+        timeK = 1/35
+        propK = 1/75
 
-        timeAdjust = dt * error * timeK
+        timeAdjust = dt * timeK
+        if timeAdjust > 0.35:
+            timeAdjust = 0.35
+        if error < 0:
+            timeAdjust = -timeAdjust
         propAdjust = error * propK
+        if abs(propAdjust) > 0.7:
+            propAdjust = 0.7 if propAdjust > 0 else -0.7
+
         adjust = timeAdjust + propAdjust
 
-        maxTimeAdj = dt * maxError * timeK
-        maxPropAdjust = maxError * propK
-        maxAdjust = maxTimeAdj + maxPropAdjust
+        if abs(subsystems.drivetrain.getError()) <= 1:
+            self.shouldEndCount += 1
+        else:
+            self.shouldEndCount = 0
 
-        turn = Utils.remap(adjust, 0, maxAdjust, 0, 1)
-        if error > 0:
-            turn *= -1
+        wpilib.SmartDashboard.putNumber('PID Time Adjust', timeAdjust)
+        wpilib.SmartDashboard.putNumber('PID Prop Adjust', propAdjust)
+        wpilib.SmartDashboard.putNumber('PID Adjust', adjust)
+        wpilib.SmartDashboard.putNumber('PID Should End Count', self.shouldEndCount)
+        wpilib.SmartDashboard.putBoolean('In PID Mode', True)
 
-        subsystems.drivetrain.drive(0, turn)
+        subsystems.drivetrain.drive(0, adjust)
 
+        
     def stop(self):
         subsystems.drivetrain.stop()
+        wpilib.SmartDashboard.putBoolean('In PID Mode', False)
 
     def isFinished(self):
-        return abs(subsystems.drivetrain.getError()) <= 1
+        if self.shouldEndCount > 5:
+            self.stop()
+            return True
+        return False
