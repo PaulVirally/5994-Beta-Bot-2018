@@ -37,12 +37,16 @@ class Drivetrain(Subsystem):
 
         self.gyro = wpilib.ADXRS450_Gyro()
         self.setpoint = 0
+        self.angleAcc = 0
+        self.anglePreviousTime = time.time()
 
         self.rangeFinder = wpilib.AnalogInput(0)
 
         self.didResetRevos = True
         self.startTime = 0
         self.revoVelos = []
+
+        self.gyro.calibrate()
 
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
@@ -69,10 +73,13 @@ class Drivetrain(Subsystem):
         return self.lastRotateValue
 
     def getAngle(self):
-        return self.gyro.getAngle()
+        return self.angleAcc
+        # return self.gyro.getAngle()
 
     def resetGyro(self):
-        self.gyro.reset()
+        self.anglePreviousTime = time.time()
+        self.angleAcc = 0
+        # self.gyro.reset()
 
     def getRotationRate(self):
         return self.gyro.getRate()
@@ -86,6 +93,18 @@ class Drivetrain(Subsystem):
 
     def _getRevPerSec(self):
         return self.rearLeftMotor.getPulseWidthVelocity()/409.6
+
+    def updateAngleAcc(self):
+        # Integrate the rotations per second
+        dt = time.time() - self.anglePreviousTime
+
+        y = self.gyro.getRate()
+        # Ignore rates less than 0.5
+        if abs(y) < 0.5:
+            y = 0
+
+        self.angleAcc += y*dt
+        self.anglePreviousTime = time.time()
 
     def updateRevolutionCounter(self):
         if self.didResetRevos:
@@ -104,7 +123,6 @@ class Drivetrain(Subsystem):
         # The first index of the revoVelos list is a time
         # The second index is the revs per sec
         # Integrate to get total revolutions over a certain period
-        print(self.revoVelos)
         integral = 0
         for i in range(len(self.revoVelos) - 1):
             dt = self.revoVelos[i+1][0] - self.revoVelos[i][0]
@@ -114,13 +132,16 @@ class Drivetrain(Subsystem):
 
     def update(self):
         self.updateRevolutionCounter()
+        self.updateAngleAcc()
 
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())
         wpilib.SmartDashboard.putNumber('Rotate Output', self.getRotate())
         wpilib.SmartDashboard.putNumber('Absolute Angle', self.getAngle())
         wpilib.SmartDashboard.putNumber('Angle', self.getAngle() % 360)
-        wpilib.SmartDashboard.putNumber('Gyro homemade \'PID\' Error', self.getError())
+        wpilib.SmartDashboard.putNumber('Gyro Error', self.getError())
+        wpilib.SmartDashboard.putNumber('Gyro Rotation Rate', self.gyro.getRate())
+        wpilib.SmartDashboard.putNumber('Gyro Setpoint', self.setpoint)
         wpilib.SmartDashboard.putNumber('Ranger Finder Distance', self.getRangeFinderDistance())
         wpilib.SmartDashboard.putNumber('Encoder Rev Per Sec', self._getRevPerSec())
         wpilib.SmartDashboard.putNumber('Total Revolutions', self.getRevolutions())
