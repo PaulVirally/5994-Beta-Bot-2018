@@ -1,5 +1,5 @@
 from commands.Brake import Brake
-# from commands.LockStraight import LockStraight
+from commands.LockStraight import LockStraight
 # from commands.ReverseDrive import ReverseDrive
 # from commands.Climb import Climb
 # from commands.HoldClimb import HoldClimb
@@ -34,8 +34,8 @@ def init():
     setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
     setGyro45Button.whenPressed(SetGyroAngle(45))
 
-    # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
-    # lockStraightButton.whileHeld(LockStraight())
+    lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
+    lockStraightButton.whileHeld(LockStraight())
     
     # reverseDriveButton = JoystickButton(joystick, RobotMap.buttons.reverseDrive)
     # reverseDriveButton.whileHeld(ReverseDrive())
