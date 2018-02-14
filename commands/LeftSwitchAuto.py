@@ -11,7 +11,6 @@ class LeftSwitchAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('Left Switch Auto')
-        # self.addSequential(WaitCommand(timeout=1))
 
         msg = wpilib.DriverStation.getGameSpecificMessage()
 
@@ -28,7 +27,6 @@ class LeftSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(8.39))
 
             # Drop off the cube
-            pass
 
         elif msg[1] == 'R':
             # Go to right switch
@@ -55,4 +53,3 @@ class LeftSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(8.39))
 
             # Drop off the cube
-            pass
