@@ -50,6 +50,14 @@ class Drivetrain(Subsystem):
 
     def drive(self, moveValue, rotateValue):
         '''Arcade drive'''
+
+        # Limit the speed of the robot if it's rekting our battery
+        if (wpilib.RobotController.getBatteryVoltage()) < 7:
+            if abs(moveValue) > 0:
+                moveValue = 0 if moveValue > 0 else -0
+            if abs(rotateValue) > 0:
+                rotateValue = 0 if rotateValue > 0 else -0
+
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
         self.lastMoveValue = moveValue
         self.lastRotateValue = rotateValue
