@@ -7,3 +7,4 @@
     * CenterScaleAuto
     * RightSwitchAuto
     * RightScaleAuto
+* Elevator subsystem needs to be functional
