@@ -10,6 +10,7 @@ from commands.PlayBack import PlayBack
 from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
 from commands.ResetRevolutions import ResetRevolutions
+from commands.SetDistance import SetDistance
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
@@ -32,10 +33,13 @@ def init():
     brakeButton.whileHeld(Brake())
 
     setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
-    setGyro45Button.whenPressed(SetGyroAngle(45))
+    setGyro45Button.whenPressed(SetGyroAngle(90))
 
-    lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
-    lockStraightButton.whileHeld(LockStraight())
+    setDistance100 = JoystickButton(joystick, 10)
+    setDistance100.whenPressed(SetDistance(100))
+
+    # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
+    # lockStraightButton.whileHeld(LockStraight())
     
     # reverseDriveButton = JoystickButton(joystick, RobotMap.buttons.reverseDrive)
     # reverseDriveButton.whileHeld(ReverseDrive())
