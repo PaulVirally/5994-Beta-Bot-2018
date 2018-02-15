@@ -11,6 +11,7 @@ from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
 from commands.ResetRevolutions import ResetRevolutions
 from commands.SetDistance import SetDistance
+from commands.AutoTest import AutoTest
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
@@ -37,6 +38,9 @@ def init():
 
     setDistance100 = JoystickButton(joystick, 10)
     setDistance100.whenPressed(SetDistance(100))
+
+    autoTestButton = JoystickButton(joystick, 12)
+    autoTestButton.whenPressed(AutoTest())
 
     # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
     # lockStraightButton.whileHeld(LockStraight())
