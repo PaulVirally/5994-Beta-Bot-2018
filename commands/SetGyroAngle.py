@@ -1,6 +1,7 @@
 from wpilib.command import Command
 import wpilib
 import subsystems
+import time
 
 class SetGyroAngle(Command):
     '''
@@ -13,43 +14,38 @@ class SetGyroAngle(Command):
         self.requires(subsystems.drivetrain)
         self.target_angle = target_angle
         self.shouldEndCount = 0
-        self.prevAdjust = 0
-        wpilib.SmartDashboard.putBoolean('In PID Mode', False)  
+        wpilib.SmartDashboard.putBoolean('In PID Mode', False)
 
 
     def initialize(self):
         subsystems.drivetrain.resetGyro()
         subsystems.drivetrain.setSetpoint(self.target_angle)
         wpilib.SmartDashboard.putBoolean('In PID Mode', True)  
+        self.startTime = time.time()
 
     def execute(self):
         error = subsystems.drivetrain.getError()
 
-        propK = 0.35/35
+        propK = 0.28/28
 
         # Adjustment proportional to the error
-        propAdjust = error * propK
+        adjust = error * propK
 
-        # If the propAdjust is too high, we don't want the robot to
-        # get out of control, so force it to be at a lower value
-        if abs(propAdjust) > 0.7:
-            propAdjust = 0.7 if propAdjust > 0 else -0.7
+        if abs(adjust) >= 0.7:
+            adjust = 0.7 if adjust > 0 else -0.7
 
-        # From legacy
-        adjust = propAdjust
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # if abs(adjust - self.previousAdj) < 0.1:
+        #   adjust = self.previousAdj + (0.11 if adjust > 0 else -0.11)
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         # If the adjust is too low, force it to be some minimum
         # value. This ensures that the robot is always moving
         # at least a little bit. This minimum value should be 
         # lowest value that makes the robot move. It should not
         # make the robot move noticeably.
-        if abs(adjust < 0.31):
-            adjust = 0.31 if adjust > 0 else -0.31
-
-        # I think this was the magic of the algorithm before the
-        # accident.
-        if abs(self.prevAdjust - adjust) < 0.11:
-            adjust += (0.11 if adjust > 0 else -0.11)
+        if abs(adjust) < 0.28:
+            adjust = 0.28 if adjust > 0 else -0.28
 
         # If we are within our range of error, increment shouldEndCount.
         # This makes sure that we don't just hit our setpoint once while
@@ -64,18 +60,22 @@ class SetGyroAngle(Command):
         # Logging
         wpilib.SmartDashboard.putNumber('PID Adjust', adjust)
         wpilib.SmartDashboard.putNumber('PID Should End Count', self.shouldEndCount)
+        wpilib.SmartDashboard.putBoolean('In PID Mode', True)       
 
         # Actually drive with the computed adjust
         subsystems.drivetrain.drive(0, adjust)
 
-        self.prevAdjust = adjust
+        # Don't take over 1.5 seconds
+        # if (time.time() - self.startTime) > 2:
+        #     self.shouldEndCount = 101
+        #     self.stop()
 
     def stop(self):
         subsystems.drivetrain.stop()
         wpilib.SmartDashboard.putBoolean('In PID Mode', False)
 
     def isFinished(self):
-        if self.shouldEndCount > 5:
+        if self.shouldEndCount >= 3:
             self.stop()
             return True
         return False
