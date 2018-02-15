@@ -27,7 +27,7 @@ class SetGyroAngle(Command):
     def execute(self):
         error = subsystems.drivetrain.getError()
 
-        propK = 0.28/28
+        propK = 0.31/45
 
         # Adjustment proportional to the error
         adjust = error * propK
@@ -41,8 +41,8 @@ class SetGyroAngle(Command):
         # at least a little bit. This minimum value should be 
         # lowest value that makes the robot move. It should not
         # make the robot move noticeably.
-        if abs(adjust) < 0.28:
-            adjust = 0.28 if adjust > 0 else -0.28
+        if abs(adjust) < 0.31:
+            adjust = 0.31 if adjust > 0 else -0.31
 
         # Limit the adjust to [-1, 1]
         if abs(adjust) >= 1:
