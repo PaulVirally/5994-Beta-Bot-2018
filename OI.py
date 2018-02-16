@@ -1,17 +1,11 @@
 from commands.Brake import Brake
-from commands.LockStraight import LockStraight
-# from commands.ReverseDrive import ReverseDrive
-# from commands.Climb import Climb
-# from commands.HoldClimb import HoldClimb
-# from commands.StopClimb import StopClimb
-# from commands.Drop import Drop
-from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
-from commands.PlayBack import PlayBack
-from commands.Record import Record
 from commands.SetGyroAngle import SetGyroAngle
-from commands.ResetRevolutions import ResetRevolutions
-from commands.SetDistance import SetDistance
 from commands.AutoTest import AutoTest
+from commands.ResetRevolutions import ResetRevolutions
+from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
+from commands.Record import Record
+from commands.PlayBack import PlayBack
+from subsystems import Drivetrain
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
@@ -36,8 +30,8 @@ def init():
     setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
     setGyro45Button.whenPressed(SetGyroAngle(90))
 
-    setDistance100 = JoystickButton(joystick, 10)
-    setDistance100.whenPressed(SetDistance(100))
+    # setDistance100 = JoystickButton(joystick, 10)
+    # setDistance100.whenPressed(SetDistance(100))
 
     autoTestButton = JoystickButton(joystick, 12)
     autoTestButton.whenPressed(AutoTest())
