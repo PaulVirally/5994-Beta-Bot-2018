@@ -81,12 +81,12 @@ class Drivetrain(Subsystem):
         return self.lastRotateValue
 
     def getAngle(self):
-        # return self.angleAcc
-        return self.gyro.getAngle()
+        return self.angleAcc
+        # return self.gyro.getAngle()
 
     def resetGyro(self):
-        # self.anglePreviousTime = time.time()
-        # self.angleAcc = 0
+        self.anglePreviousTime = time.time()
+        self.angleAcc = 0
         self.gyro.reset()
 
     def getRotationRate(self):
@@ -140,7 +140,7 @@ class Drivetrain(Subsystem):
 
     def update(self):
         self.updateRevolutionCounter()
-        # self.updateAngleAcc()
+        self.updateAngleAcc()
 
     def log(self):
         wpilib.SmartDashboard.putNumber('Speed Output', self.getSpeed())

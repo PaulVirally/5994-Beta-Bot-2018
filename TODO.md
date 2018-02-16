@@ -1,5 +1,7 @@
-* Rewrite SetGyroAngle()
-* Write SetDistance()
+* ~~Rewrite SetGyroAngle()~~
+* ~~Write SetDistance()~~
+* Test SetGyroAngle()
+* Test SetDistance()
 * Add 6 Autos
     * LeftSwitchAuto
     * LeftScaleAuto
@@ -7,3 +9,4 @@
     * CenterScaleAuto
     * RightSwitchAuto
     * RightScaleAuto
+* Elevator subsystem needs to be functional
