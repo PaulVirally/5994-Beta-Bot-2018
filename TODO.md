@@ -8,5 +8,6 @@
     * RightScaleAuto
 * Elevator subsystem needs to be functional
     * Add claw functionality
+        * Test the claw numbers
     * Limit switches?
     * Analog input to elevator through the winglet?
