@@ -13,7 +13,11 @@ class RightSwitchAuto(CommandGroup):
     def __init__(self):
         super().__init__('Right Switch Auto')
         
-        msg = wpilib.DriverStation.getGameSpecificMessage()
+        msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
+
+        if not msg:
+            print('[WARNING] No game specific message found!')
+            return
 
         if msg[0] == 'L':
             # Go to the left switch
