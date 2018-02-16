@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from commands.NoAuto import NoAuto
-# from commands.LeftSwitchAuto import LeftSwitchAuto
+from commands.LeftSwitchAuto import LeftSwitchAuto
 # from commands.LeftSwitchAuto import CenterSwitchAuto
 # from commands.RightSwitchAuto import RightSwitchAuto
 import wpilib
@@ -29,7 +29,7 @@ class Robot(CommandBasedRobot):
 
         self.autoChooser = wpilib.SendableChooser()
         self.autoChooser.addDefault('No Auto', NoAuto())
-        # self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
+        self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
         # self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
         # self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
         wpilib.SmartDashboard.putData('Auto Mode', self.autoChooser)

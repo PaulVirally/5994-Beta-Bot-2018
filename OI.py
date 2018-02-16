@@ -1,6 +1,7 @@
 from commands.Brake import Brake
-from commands.SetGyroAngle import SetGyroAngle
-from commands.AutoTest import AutoTest
+# from commands.SetGyroAngle import SetGyroAngle
+# from commands.SetDistance import SetDistance
+# from commands.AutoTest import AutoTest
 from commands.ResetRevolutions import ResetRevolutions
 from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
 from commands.Record import Record
@@ -27,42 +28,20 @@ def init():
     brakeButton = JoystickButton(joystick, RobotMap.buttons.brake)
     brakeButton.whileHeld(Brake())
 
-    setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
-    setGyro45Button.whenPressed(SetGyroAngle(90))
+    # setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
+    # setGyro45Button.whenPressed(SetGyroAngle(90))
 
     # setDistance100 = JoystickButton(joystick, 10)
     # setDistance100.whenPressed(SetDistance(100))
 
-    autoTestButton = JoystickButton(joystick, 12)
-    autoTestButton.whenPressed(AutoTest())
-
-    # lockStraightButton = JoystickButton(joystick, RobotMap.buttons.lockStraight)
-    # lockStraightButton.whileHeld(LockStraight())
-    
-    # reverseDriveButton = JoystickButton(joystick, RobotMap.buttons.reverseDrive)
-    # reverseDriveButton.whileHeld(ReverseDrive())
-    
-    # climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
-    # climbButton.whileHeld(Climb())
-    # climbButton.whenReleased(HoldClimb())
-
-    # stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
-    # stopClimbButton.whenPressed(StopClimb())
-
-    # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
-    # dropButton.whileHeld(Drop())
+    # autoTestButton = JoystickButton(joystick, 12)
+    # autoTestButton.whenPressed(AutoTest())
 
     resetRevolutionsButton = JoystickButton(joystick, RobotMap.buttons.resetRevolutions)
     resetRevolutionsButton.whenPressed(ResetRevolutions())
 
     preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
-
-    centerRecordButton = JoystickButton(joystick, RobotMap.buttons.recordCenterAuto)
-    centerRecordButton.whenPressed(Record('/home/lvuser/center_auto.auto'))
-
-    playCenterButton = JoystickButton(joystick, RobotMap.buttons.playCenterAuto)
-    playCenterButton.whileHeld(PlayBack('/home/lvuser/center_auto.auto'))
 
 def getJoyTurn():
     joyX = joystick.getX()
