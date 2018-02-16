@@ -7,9 +7,11 @@ from wpilib.robotbase import RobotBase
 
 from .Drivetrain import Drivetrain
 from .Elevator import Elevator
+from .Claw import Claw
 
 drivetrain = None
 elevator = None
+claw = None
 subsystems = []
 
 recordedData = ''
@@ -28,8 +30,9 @@ def init():
 
     drivetrain = Drivetrain()
     elevator = Elevator()
+    claw = Claw()
 
-    subsystems = [drivetrain, elevator]
+    subsystems = [drivetrain, elevator, claw]
 
 def update():
     for subsys in subsystems:
