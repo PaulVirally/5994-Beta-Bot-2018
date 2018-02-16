@@ -1,8 +1,8 @@
 from wpilib.command.commandgroup import CommandGroup
 from wpilib.command.waitcommand import WaitCommand
 import wpilib
-from commands import SetDistance
-from commands import SetGyroAngle
+from commands.SetDistance import SetDistance
+from commands.SetGyroAngle import SetGyroAngle
 import subsystems
 
 class AutoTest(CommandGroup):

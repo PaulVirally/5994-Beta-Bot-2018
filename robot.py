@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from commands import NoAuto
-# from commands import LeftSwitchAuto
-# from commands import CenterSwitchAuto
-# from commands import RightSwitchAuto
+from commands.NoAuto import NoAuto
+# from commands.LeftSwitchAuto import LeftSwitchAuto
+# from commands.LeftSwitchAuto import CenterSwitchAuto
+# from commands.RightSwitchAuto import RightSwitchAuto
 import wpilib
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot

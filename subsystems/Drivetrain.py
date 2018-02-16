@@ -4,7 +4,7 @@ import ctre
 from wpilib.command.subsystem import Subsystem
 from wpilib.drive.differentialdrive import DifferentialDrive
 
-from commands import SmoothFollowJoystick
+from commands.SmoothFollowJoystick import SmoothFollowJoystick
 import RobotMap
 import subsystems
 
