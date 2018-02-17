@@ -81,8 +81,8 @@ class Drivetrain(Subsystem):
         return self.lastRotateValue
 
     def getAngle(self):
-        return self.angleAcc
-        # return self.gyro.getAngle()
+        # return self.angleAcc
+        return self.gyro.getAngle()
 
     def resetGyro(self):
         self.anglePreviousTime = time.time()
@@ -107,8 +107,8 @@ class Drivetrain(Subsystem):
         dt = time.time() - self.anglePreviousTime
 
         y = self.gyro.getRate()
-        # Ignore rates less than 0.5
-        if abs(y) < 0.5:
+        # Ignore rates less than 1
+        if abs(y) < 1:
             y = 0
 
         self.angleAcc += y*dt

@@ -39,17 +39,17 @@ class SetDistance(Command):
         if abs(adjust - self.prevAdjust) < 0.1:
             adjust = self.prevAdjust + (0.11 if adjust > 0 else -0.11)
 
-        if abs(adjust) <= 0.31:
-            adjust = 0.31 if adjust > 0 else -0.31
+        if abs(adjust) <= 0.4:
+            adjust = 0.4 if adjust > 0 else -0.4
 
         if abs(adjust) >= 0.7:
             adjust = 0.7 if adjust > 0 else -0.7
 
-        turnAdjust = (subsystems.drivetrain.getAngle()%360) * 0.2
+        turnAdjust = (subsystems.drivetrain.getAngle()%360) * 0.3
         if abs(turnAdjust) >= 0.5:
             turnAdjust = 0
-        if abs(adjust) <= 0.3:
-            turnAdjust = 0
+        # if abs(error) <= 40:
+        #     turnAdjust = 0
 
         if abs(self.getError()) <= 5:
             self.errorCounter += 1

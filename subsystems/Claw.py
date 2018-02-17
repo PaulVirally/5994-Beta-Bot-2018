@@ -38,6 +38,9 @@ class Claw(Subsystem):
     def log(self):
         wpilib.SmartDashboard.putNumber('Claw', self.lastValue)
 
+    def update(self):
+        pass
+
     def saveOutput(self):
         return ''
 

@@ -26,27 +26,27 @@ class CenterSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(137.05))            
 
             # Turn left
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(-90))            
 
             # Set up for going to switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(309.34))            
 
             # Turn right
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(90))
 
             # Drive up to switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(262.35))            
 
             # Face the switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(90))            
 
             # Drive right up to the switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(8.39))
 
             # Drop off cube
@@ -58,27 +58,27 @@ class CenterSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(137.05))            
 
             # Turn right
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(90))            
 
             # Set up for going to switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(266.27))
 
             # Turn left
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(-90))            
 
             # Drive up to switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(262.35))
 
             # Face the switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetGyroAngle(-90))            
 
             # Drive right up to the switch
-            self.addSequential(WaitCommand(timeout=0.05))            
+            self.addSequential(WaitCommand(timeout=0.1))            
             self.addSequential(SetDistance(8.39))
 
             # Drop off cube

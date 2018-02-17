@@ -26,6 +26,7 @@ def init():
     '''
     global drivetrain
     global elevator
+    global claw
     global subsystems
 
     drivetrain = Drivetrain()
