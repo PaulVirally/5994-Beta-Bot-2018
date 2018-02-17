@@ -12,13 +12,10 @@ class AutoTest(CommandGroup):
     def __init__(self):
         super().__init__('Auto Test')
 
-        self.addSequential(SetDistance(500))
+        self.addSequential(SetDistance(413))
 
-        self.addSequential(WaitCommand(timeout=0.05))
+        self.addSequential(WaitCommand(timeout=1))
         self.addSequential(SetGyroAngle(90))
 
-        self.addSequential(WaitCommand(timeout=0.05))
-        self.addSequential(SetGyroAngle(90))
-
-        self.addSequential(WaitCommand(timeout=0.05))
-        self.addSequential(SetDistance(500))
+        self.addSequential(WaitCommand(timeout=1))
+        self.addSequential(SetDistance(717))

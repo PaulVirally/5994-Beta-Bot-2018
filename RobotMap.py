@@ -47,6 +47,12 @@ elevator = {
 }
 elevator = dotdict(elevator)
 
+# Claw motor assignments
+claw = {
+    'motor' : 1
+}
+claw = dotdict(claw)
+
 # Default parameters assignment
 defaults = {
     'speedSensitivity'   : 1.5,

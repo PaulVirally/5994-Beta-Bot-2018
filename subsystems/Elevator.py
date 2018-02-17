@@ -49,6 +49,7 @@ class Elevator(Subsystem):
         # elevator by a tad so as to not break  #
         # everything and get people mad at you  #
         #########################################
+        # Something about bringing the elevator down after hooking
         self._set(0.2)
 
     def up(self):
