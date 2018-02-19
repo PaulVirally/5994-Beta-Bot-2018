@@ -12,10 +12,10 @@ class Drop(Command):
     def __init__(self):
         super().__init__('Drop')
 
-        self.requires(subsystems.climber)
+        self.requires(subsystems.elevator)
 
     def execute(self):
-        subsystems.climber.drop()
+        subsystems.elevator.down()
 
     def stop(self):
-        subsystems.drivetrain.stop()
+        subsystems.elevator.stop()

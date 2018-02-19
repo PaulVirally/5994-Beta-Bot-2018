@@ -12,10 +12,10 @@ class HoldClimb(Command):
     def __init__(self):
         super().__init__('Hold Climb')
 
-        self.requires(subsystems.climber)
+        self.requires(subsystems.elevator)
 
     def execute(self):
-        subsystems.climber.hold()
+        subsystems.elevator.hold()
 
     def stop(self):
         subsystems.drivetrain.stop()

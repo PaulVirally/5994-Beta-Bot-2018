@@ -6,16 +6,16 @@ import Utils
 
 class Climb(Command):
     '''
-    Activates the climber subsystem
+    Activates the elevator subsystem
     '''
 
     def __init__(self):
         super().__init__('Climb')
 
-        self.requires(subsystems.climber)
+        self.requires(subsystems.elevator)
 
     def execute(self):
-        subsystems.climber.climb()
+        subsystems.elevator.up()
 
     def stop(self):
-        subsystems.drivetrain.stop() # .hold()?
+        subsystems.drivetrain.hold() # .hold()?
