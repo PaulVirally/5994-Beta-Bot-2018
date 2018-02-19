@@ -1,11 +1,13 @@
 from commands.Brake import Brake
-# from commands.SetGyroAngle import SetGyroAngle
-# from commands.SetDistance import SetDistance
-# from commands.AutoTest import AutoTest
 from commands.ResetRevolutions import ResetRevolutions
 from commands.PreciseDriveWithJoystick import PreciseDriveWithJoystick
-from commands.Record import Record
-from commands.PlayBack import PlayBack
+from commands.Climb import Climb
+from commands.Drop import Drop
+from commands.StopClimb import StopClimb
+from commands.RetractCube import RetractCube
+from commands.SuckCube import SuckCube
+from commands.WinchDown import WinchDown
+from commands.WinchUp import WinchUp
 from subsystems import Drivetrain
 import wpilib
 from wpilib.joystick import Joystick
@@ -28,20 +30,32 @@ def init():
     brakeButton = JoystickButton(joystick, RobotMap.buttons.brake)
     brakeButton.whileHeld(Brake())
 
-    # setGyro45Button = JoystickButton(joystick, RobotMap.buttons.setGyro45)
-    # setGyro45Button.whenPressed(SetGyroAngle(90))
-
-    # setDistance100 = JoystickButton(joystick, 10)
-    # setDistance100.whenPressed(SetDistance(100))
-
-    # autoTestButton = JoystickButton(joystick, 12)
-    # autoTestButton.whenPressed(AutoTest())
-
     resetRevolutionsButton = JoystickButton(joystick, RobotMap.buttons.resetRevolutions)
     resetRevolutionsButton.whenPressed(ResetRevolutions())
 
     preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
+
+    climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
+    climbButton.whileHeld(Climb())
+
+    dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
+    dropButton.whileHeld(Drop())
+
+    stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
+    stopClimbButton.whileHeld(StopClimb())
+
+    suckCubeButton = JoystickButton(joystick, RobotMap.buttons.suckCube)
+    suckCubeButton.whileHeld(SuckCube())
+
+    retractCubeButton = JoystickButton(joystick, RobotMap.buttons.retractCube)
+    retractCubeButton.whileHeld(RetractCube())
+
+    winchUpButton = JoystickButton(joystick, RobotMap.buttons.winchUp)
+    winchUpButton.whileHeld(WinchUp())
+
+    winchDownButton = JoystickButton(joystick, RobotMap.buttons.winchDown)
+    winchDownButton.whileHeld(WinchDown())
 
 def getJoyTurn():
     joyX = joystick.getX()

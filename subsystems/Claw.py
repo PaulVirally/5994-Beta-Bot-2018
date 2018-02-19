@@ -15,6 +15,7 @@ class Claw(Subsystem):
 
         self.lastValue = 0
         self.motor = wpilib.VictorSP(RobotMap.claw.motor)
+        self.winchMotor = wpilib.VictorSP(RobotMap.claw.winchMotor)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(HoldClaw())
@@ -34,6 +35,12 @@ class Claw(Subsystem):
     
     def retract(self):
         self._set(-1)
+
+    def winchUp(self):
+        self.winchMotor.set(1)
+
+    def winchDown(self):
+        self.winchMotor.set(-1)
 
     def log(self):
         wpilib.SmartDashboard.putNumber('Claw', self.lastValue)

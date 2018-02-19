@@ -10,7 +10,7 @@ class PhysicsEngine:
 
     def update_sim(self, hal_data, now, dt):
         front_left_motor = hal_data['CAN'][0]['value']
-        front_right_motor = hal_data['CAN'][1]['value']
+        front_right_motor = hal_data['CAN'][4]['value']
         rear_left_motor = hal_data['CAN'][2]['value']
         rear_right_motor = hal_data['CAN'][3]['value']
 

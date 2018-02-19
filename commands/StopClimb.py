@@ -12,7 +12,7 @@ class StopClimb(InstantCommand):
     def __init__(self):
         super().__init__('Stop Climb')
         
-        self.requires(subsystems.climber)
+        self.requires(subsystems.elevator)
 
     def initialize(self):
-        subsystems.climber.stop()
+        subsystems.elevator.stop()
