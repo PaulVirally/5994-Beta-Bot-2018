@@ -18,4 +18,4 @@ class Climb(Command):
         subsystems.elevator.up()
 
     def stop(self):
-        subsystems.drivetrain.hold() # .hold()?
+        subsystems.elevator.hold() # .hold()?

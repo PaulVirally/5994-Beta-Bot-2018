@@ -18,4 +18,4 @@ class Drop(Command):
         subsystems.elevator.down()
 
     def stop(self):
-        subsystems.elevator.stop()
+        subsystems.elevator.hold()

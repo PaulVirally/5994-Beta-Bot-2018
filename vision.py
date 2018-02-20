@@ -9,11 +9,11 @@ def main():
     backCam = cs.startAutomaticCapture(dev=1)
 
     # For a list of possible combinations: http://roborio-5994-frc.local:1181/
-    frontCam.setResolution(320, 240)
+    frontCam.setResolution(160, 120)
     frontCam.setFPS(30)
     # backCam.setPixelFormat(kYUYV)
 
-    backCam.setResolution(320, 240)
+    backCam.setResolution(160, 120)
     backCam.setFPS(30)
     # backCam.setPixelFormat(kYUYV)
 

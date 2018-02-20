@@ -14,9 +14,9 @@ class dotdict(dict):
 # Button mapping for the joystick
 buttons = {
     'brake'            : 1,
-    'climb'            : 6,
-    'drop'             : 4,
-    'stopClimb'        : 3,
+    'climb'            : 5,
+    'drop'             : 3,
+    'stopClimb'        : 4,
     'preciseDrive'     : 7,
     'resetRevolutions' : 5,
     'suckCube'         : 12,
@@ -37,7 +37,7 @@ drivetrain = dotdict(drivetrain)
 
 # Elevator motor assignment
 elevator = {
-    'motor' : 0,
+    'motor' : 3,
     'pos0'  : 0,
     'pos1'  : 1,
     'pos2'  : 2,
@@ -48,8 +48,9 @@ elevator = dotdict(elevator)
 
 # Claw motor assignments
 claw = {
-    'motor'      : 1,
-    'winchMotor' : 2
+    'leftMotor'  : 2,
+    'rightMotor' : 1,
+    'winchMotor' : 1
 }
 claw = dotdict(claw)
 
