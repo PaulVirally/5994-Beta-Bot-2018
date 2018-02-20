@@ -17,5 +17,5 @@ class Climb(Command):
     def execute(self):
         subsystems.elevator.up()
 
-    def stop(self):
+    def end(self):
         subsystems.elevator.hold() # .hold()?

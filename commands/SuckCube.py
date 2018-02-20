@@ -18,5 +18,5 @@ class SuckCube(Command):
     def execute(self):
         subsystems.claw.suck()
 
-    def stop(self):
+    def end(self):
         subsystems.claw.stop()

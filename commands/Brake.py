@@ -15,5 +15,5 @@ class Brake(Command):
     def execute(self):
         subsystems.drivetrain.stop()
 
-    def stop(self):
+    def end(self):
         subsystems.drivetrain.stop()

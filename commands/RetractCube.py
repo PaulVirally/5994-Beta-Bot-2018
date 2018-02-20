@@ -18,5 +18,5 @@ class RetractCube(Command):
     def execute(self):
         subsystems.claw.retract()
 
-    def stop(self):
+    def end(self):
         subsystems.claw.hold()

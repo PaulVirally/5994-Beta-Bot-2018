@@ -15,5 +15,5 @@ class PlayBack(Command):
     def execute(self):
         subsystems.playRecording()
 
-    def stop(self):
+    def end(self):
         subsystems.stop()

@@ -41,5 +41,5 @@ class ReverseDrive(Command):
         # Drive backwards
         subsystems.drivetrain.drive(-speed, turn)
 
-    def stop(self):
+    def end(self):
         subsystems.drivetrain.stop()

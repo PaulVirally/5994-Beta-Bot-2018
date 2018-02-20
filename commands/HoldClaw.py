@@ -17,5 +17,5 @@ class HoldClaw(Command):
     def execute(self):
         subsystems.claw.hold()
 
-    def stop(self):
+    def end(self):
         subsystems.claw.stop()

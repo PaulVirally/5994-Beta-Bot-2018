@@ -17,5 +17,5 @@ class Drop(Command):
     def execute(self):
         subsystems.elevator.down()
 
-    def stop(self):
+    def end(self):
         subsystems.elevator.hold()

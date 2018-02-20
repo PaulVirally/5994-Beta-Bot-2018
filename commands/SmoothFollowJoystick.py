@@ -41,5 +41,5 @@ class SmoothFollowJoystick(Command):
         # Drive
         subsystems.drivetrain.drive(speed, turn)
 
-    def stop(self):
+    def end(self):
         subsystems.drivetrain.stop()
