@@ -10,6 +10,6 @@ class CrossLineAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('Cross Line Auto')
-        print('[WARNING] CrossLineAuto called')
+        print('[AUTO] CrossLineAuto running')
 
         self.addSequential(SetDistance(350))

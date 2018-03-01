@@ -41,7 +41,6 @@ class Robot(CommandBasedRobot):
         self.autoChooser.addObject('Cross Line Auto', CrossLineAuto())
         self.autoChooser.addObject('Left Switch Safe', LeftSwitchSafe())
         self.autoChooser.addObject('Right Switch Safe', RightSwitchSafe())
-        self.autoChooser.addDefault('No Auto', NoAuto())
         
         wpilib.SmartDashboard.putData('Auto Mode', self.autoChooser)
         self.autonomousCommand = None
@@ -100,6 +99,9 @@ class Robot(CommandBasedRobot):
         from the OI to the SmartDashboard.'''
         subsystems.log()
         OI.log()
+        wpilib.SmartDashboard.putData(subsystems.drivetrain)
+        wpilib.SmartDashboard.putData(subsystems.claw)
+        wpilib.SmartDashboard.putData(subsystems.elevator)
 
 if __name__ == '__main__':
     wpilib.run(Robot)

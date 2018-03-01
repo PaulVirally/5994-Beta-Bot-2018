@@ -15,9 +15,12 @@ class LeftSwitchAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('Left Switch Auto')
-        print('[WARNING] LeftSwitchAuto running')
+
+    def initialize(self):
+        print('[AUTO] LeftSwitchAuto running')
 
         msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
+        print('[AUTO] Game specific message (msg, repr, type): {0}\n{1}\n{2}'.format(msg, repr(msg), type(msg)))
 
         if not msg:
             print('[WARNING] No game specific message found!')
@@ -51,27 +54,27 @@ class LeftSwitchAuto(CommandGroup):
             self.addParallel(SuckForTime(12))
 
             # Turn right
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetGyroAngle(90))
 
             # Set up for going to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetDistance(576.61))
 
             # Turn left to go to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetGyroAngle(-90))
 
             # Go up to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetDistance(262.35))
 
             # Turn left to face switch
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetGyroAngle(-90))
 
             # Drive right up to the switch
-            self.addSequential(WaitCommand(timeout=0.1))            
+            self.addSequential(WaitCommand(timeout=0.1))
             self.addSequential(SetDistance(8.39))
 
             # Drop off the cube

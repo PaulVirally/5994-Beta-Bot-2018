@@ -15,9 +15,12 @@ class CenterSwitchAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('Center Switch Auto')
-        print('[WARNING] CenterSwitchAuto running')        
+
+    def initialize(self):
+        print('[AUTO] CenterSwitchAuto running')        
 
         msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
+        print('[AUTO] Game specific message (msg, repr, type): {0}\n{1}\n{2}'.format(msg, repr(msg), type(msg)))        
 
         if not msg:
             print('[WARNING] No game specific message found!')
