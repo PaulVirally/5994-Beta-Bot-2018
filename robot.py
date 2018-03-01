@@ -5,7 +5,9 @@ from commands.LeftSwitchAuto import LeftSwitchAuto
 from commands.CenterSwitchAuto import CenterSwitchAuto
 from commands.RightSwitchAuto import RightSwitchAuto
 from commands.CrossLineAuto import CrossLineAuto
-from commands.AutoTest import AutoTest
+from commands.LeftSwitchSafe import LeftSwitchSafe
+from commands.RightSwitchSafe import RightSwitchSafe
+# from commands.AutoTest import AutoTest
 import wpilib
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
@@ -30,12 +32,15 @@ class Robot(CommandBasedRobot):
         subsystems.init()
 
         self.autoChooser = wpilib.SendableChooser()
-        # self.autoChooser.addDefault('No Auto', NoAuto())
-        self.autoChooser.addDefault('Auto Test', AutoTest())
+
+        self.autoChooser.addDefault('No Auto', NoAuto())
         self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
         self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
         self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Cross Line Auto', CrossLineAuto())
+        self.autoChooser.addObject('Left Switch Safe', LeftSwitchSafe())
+        self.autoChooser.addObject('Right Switch Safe', RightSwitchSafe())
+        
         wpilib.SmartDashboard.putData('Auto Mode', self.autoChooser)
         self.autonomousCommand = None
 

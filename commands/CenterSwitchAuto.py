@@ -3,6 +3,9 @@ from wpilib.command.waitcommand import WaitCommand
 import wpilib
 from commands.SetDistance import SetDistance
 from commands.SetGyroAngle import SetGyroAngle
+from commands.ClimbForTime import ClimbForTime
+from commands.SuckForTime import SuckForTime
+from commands.RetractForTime import RetractCubeForTime
 import subsystems
 
 class CenterSwitchAuto(CommandGroup):
@@ -23,7 +26,9 @@ class CenterSwitchAuto(CommandGroup):
             # Go to left switch
 
             # Go to bussing lane
-            self.addSequential(SetDistance(137.05))            
+            self.addSequential(SetDistance(137.05))
+            self.addParallel(ClimbForTime(2))
+            self.addParallel(SuckForTime(12))         
 
             # Turn left
             self.addSequential(WaitCommand(timeout=0.1))            
@@ -50,12 +55,15 @@ class CenterSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(8.39))
 
             # Drop off cube
+            self.addSequential(RetractCubeForTime(3))            
             
         elif msg[1] == 'R':
             # Go to right switch
 
             # Go to bussing lane
-            self.addSequential(SetDistance(137.05))            
+            self.addSequential(SetDistance(137.05))
+            self.addParallel(ClimbForTime(2))
+            self.addParallel(SuckForTime(12))          
 
             # Turn right
             self.addSequential(WaitCommand(timeout=0.1))            
@@ -82,3 +90,4 @@ class CenterSwitchAuto(CommandGroup):
             self.addSequential(SetDistance(8.39))
 
             # Drop off cube
+            self.addSequential(RetractCubeForTime(3))            

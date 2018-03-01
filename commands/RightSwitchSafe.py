@@ -8,7 +8,7 @@ from commands.SuckForTime import SuckForTime
 from commands.RetractForTime import RetractCubeForTime
 import subsystems
 
-class RightSwitchAuto(CommandGroup):
+class RightSwitchSafe(CommandGroup):
     '''
     The auto that goes to the switch starting from the right
     '''
@@ -23,39 +23,7 @@ class RightSwitchAuto(CommandGroup):
             return
 
         if msg[0] == 'L':
-            # Go to the left switch
-
-            # Go to bussing lane
-            self.addSequential(SetDistance(137.05))
-            self.addParallel(ClimbForTime(2))
-            self.addParallel(SuckForTime(12))
-
-            # Go turn left
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetGyroAngle(-90))
-
-            # Set up for going to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetDistance(576.61))
-
-            # Turn right to go to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetGyroAngle(-90))
-
-            # Go up to switch
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetDistance(262.35))
-
-            # Turn right to face switch
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetGyroAngle(90))
-
-            # Drive right up to the switch
-            self.addSequential(WaitCommand(timeout=0.1))            
-            self.addSequential(SetDistance(8.39))
-
-            # Drop off the cube
-            self.addSequential(RetractCubeForTime(3))
+            pass
 
         elif msg[1] == 'R':
             # Go to right switch

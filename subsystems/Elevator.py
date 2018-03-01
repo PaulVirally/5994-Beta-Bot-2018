@@ -1,5 +1,6 @@
 import wpilib
 from wpilib.command.subsystem import Subsystem
+from commands.DriveElevator import DriveElevator
 import RobotMap
 
 class Elevator(Subsystem):
@@ -23,6 +24,9 @@ class Elevator(Subsystem):
         # self.lastStates = [0, 0, 0, 0, 0]
         # self.pos = 0
         # self.dir = 'stopped'
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(DriveElevator())
 
     def update(self):
         self.poll()
@@ -53,7 +57,7 @@ class Elevator(Subsystem):
         # everything and get people mad at you  #
         #########################################
         # Something about bringing the elevator down after hooking
-        self._set(0.23)
+        self._set(0.2)
 
     def up(self):
         if self.switch.get():

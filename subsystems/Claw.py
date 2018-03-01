@@ -1,7 +1,7 @@
 import wpilib
 import ctre
 from wpilib.command.subsystem import Subsystem
-from commands.HoldClaw import HoldClaw
+from commands.DriveClaw import DriveClaw
 import RobotMap
 
 class Claw(Subsystem):
@@ -20,7 +20,7 @@ class Claw(Subsystem):
         self.winchMotor = ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.claw.winchMotor)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(HoldClaw())
+        self.setDefaultCommand(DriveClaw())
 
     def _set(self, value):
         self.lastValue = value

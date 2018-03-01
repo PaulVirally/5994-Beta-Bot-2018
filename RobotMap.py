@@ -13,16 +13,17 @@ class dotdict(dict):
 
 # Button mapping for the joystick
 buttons = {
-    'brake'            : 1,
-    'climb'            : 5,
-    'drop'             : 3,
-    'stopClimb'        : 4,
-    'preciseDrive'     : 7,
-    'resetRevolutions' : 5,
-    'suckCube'         : 12,
-    'retractCube'      : 11,
-    'winchUp'          : 10,
-    'winchDown'        : 9
+    'brake'            : 2,
+    # 'climb'            : 15,
+    # 'drop'             : 15,
+    # 'stopClimb'        : 15,
+    'preciseDrive'     : 3,
+    # 'resetRevolutions' : 15,
+    # 'suckCube'         : 14,
+    'retractCube'      : 5,
+    'retractCube2'     : 6,
+    'winchUp'          : 4,
+    'winchDown'        : 1
 }
 buttons = dotdict(buttons)
 
