@@ -28,7 +28,7 @@ class CenterSwitchAuto(CommandGroup):
 
             # Go to bussing lane
             self.addSequential(SetDistance(137.05))
-            self.addParallel(ClimbForTime(2))
+            self.addParallel(ClimbForTime(3))
             self.addParallel(SuckForTime(12))         
 
             # Turn left
@@ -63,7 +63,7 @@ class CenterSwitchAuto(CommandGroup):
 
             # Go to bussing lane
             self.addSequential(SetDistance(137.05))
-            self.addParallel(ClimbForTime(2))
+            self.addParallel(ClimbForTime(3))
             self.addParallel(SuckForTime(12))          
 
             # Turn right

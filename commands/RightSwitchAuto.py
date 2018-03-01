@@ -27,7 +27,7 @@ class RightSwitchAuto(CommandGroup):
 
             # Go to bussing lane
             self.addSequential(SetDistance(137.05))
-            self.addParallel(ClimbForTime(2))
+            self.addParallel(ClimbForTime(3))
             self.addParallel(SuckForTime(12))
 
             # Go turn left
@@ -62,7 +62,7 @@ class RightSwitchAuto(CommandGroup):
 
             # Go to switch
             self.addSequential(SetDistance(399.4))
-            self.addParallel(ClimbForTime(2))
+            self.addParallel(ClimbForTime(3))
             self.addParallel(SuckForTime(12))
 
             # Turn left
