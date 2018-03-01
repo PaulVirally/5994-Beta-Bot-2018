@@ -12,7 +12,7 @@ from subsystems import Drivetrain
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
-
+import Utils
 import RobotMap
 
 joystick = None
@@ -91,7 +91,8 @@ def stopRumble():
 def getClawSpeeds():
     l = joystick.getRawAxis(2) # 4
     r = joystick.getRawAxis(3) # 5
-    return ((l*2)-1, (r*2)-1)
+    return (l, r)
+    # return ((l*2)-1, (r*2)-1)
     # return ((l+1)/2, (r+1)/2)
 
 def getSpeedSmoothing():
@@ -103,3 +104,5 @@ def getTurnSmoothing():
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
+    wpilib.SmartDashboard.putNumber('LeftClaw', joystick.getRawAxis(2))
+    wpilib.SmartDashboard.putNumber('RightClaw', joystick.getRawAxis(3))

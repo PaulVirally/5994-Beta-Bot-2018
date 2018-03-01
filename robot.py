@@ -33,13 +33,15 @@ class Robot(CommandBasedRobot):
 
         self.autoChooser = wpilib.SendableChooser()
 
-        self.autoChooser.addDefault('No Auto', NoAuto())
+        # self.autoChooser.addDefault('No Auto', NoAuto())
+        self.autoChooser.addDefault('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
         self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
-        self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
+        # self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Cross Line Auto', CrossLineAuto())
         self.autoChooser.addObject('Left Switch Safe', LeftSwitchSafe())
         self.autoChooser.addObject('Right Switch Safe', RightSwitchSafe())
+        self.autoChooser.addDefault('No Auto', NoAuto())
         
         wpilib.SmartDashboard.putData('Auto Mode', self.autoChooser)
         self.autonomousCommand = None
@@ -67,6 +69,7 @@ class Robot(CommandBasedRobot):
         '''This function is called periodically during autonomous.'''
         Scheduler.getInstance().run()
         subsystems.update()
+        self.log()
 
     def teleopInit(self):
         '''This function is called at the beginning of operator control.'''
@@ -90,7 +93,7 @@ class Robot(CommandBasedRobot):
     def disabledPeriodic(self):
         '''This function is called periodically while disabled.'''
         self.log()
-        subsystems.update()        
+        subsystems.update()    
 
     def log(self):
         '''Logs all the information from the subsystems and

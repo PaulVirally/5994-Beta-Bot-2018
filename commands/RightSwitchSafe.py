@@ -15,6 +15,7 @@ class RightSwitchSafe(CommandGroup):
 
     def __init__(self):
         super().__init__('Right Switch Auto')
+        print('[WARNING] RightSwitchSafe running')        
         
         msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
 

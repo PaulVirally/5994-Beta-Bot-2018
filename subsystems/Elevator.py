@@ -2,6 +2,7 @@ import wpilib
 from wpilib.command.subsystem import Subsystem
 from commands.DriveElevator import DriveElevator
 import RobotMap
+import OI
 
 class Elevator(Subsystem):
     '''
@@ -58,10 +59,13 @@ class Elevator(Subsystem):
         #########################################
         # Something about bringing the elevator down after hooking
         self._set(0.2)
+        OI.stopRumble()
 
     def up(self):
         if self.switch.get():
             self._set(0.5)
+        else:
+            OI.rumble()
         # self.dir = 'up'
 
     def down(self):
@@ -70,6 +74,7 @@ class Elevator(Subsystem):
 
     def stop(self):
         self._set(0)
+        OI.stopRumble()
         # self.dir = 'stopped'
 
     def log(self):

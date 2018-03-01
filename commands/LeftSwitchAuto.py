@@ -15,6 +15,7 @@ class LeftSwitchAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('Left Switch Auto')
+        print('[WARNING] LeftSwitchAuto running')
 
         msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
 

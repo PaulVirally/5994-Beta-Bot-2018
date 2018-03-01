@@ -57,7 +57,7 @@ claw = dotdict(claw)
 
 # Default parameters assignment
 defaults = {
-    'speedSensitivity'   : 1.5,
-    'turningSensitivity' : 1.5
+    'speedSensitivity'   : 1.0,
+    'turningSensitivity' : 0.5
 }
 defaults = dotdict(defaults)
