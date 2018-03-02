@@ -12,4 +12,4 @@ class CrossLineAuto(CommandGroup):
         super().__init__('Cross Line Auto')
         print('[AUTO] CrossLineAuto running')
 
-        self.addSequential(SetDistance(350))
+        self.addSequential(SetDistance(400)) # 350
