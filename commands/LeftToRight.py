@@ -14,7 +14,7 @@ class LeftToRight(CommandGroup):
         super().__init__('LeftToRight')
         # Go to bussing lane
         self.addSequential(SetDistance(137.05))
-        self.addParallel(ClimbForTime(3))
+        self.addParallel(ClimbForTime(5))
         self.addParallel(SuckForTime(12))
 
         # Turn right

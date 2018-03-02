@@ -23,4 +23,4 @@ class RightSwitchSafe(Command):
             return
 
         if msg[1] == 'R':
-            RightToRight()
+            RightToRight().execute()

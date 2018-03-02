@@ -23,7 +23,7 @@ class RightSwitchAuto(Command):
             return
 
         if msg[0] == 'L':
-            RightToLeft()
+            RightToLeft().execute()
 
         elif msg[1] == 'R':
-            RightToRight()
+            RightToRight().execute()

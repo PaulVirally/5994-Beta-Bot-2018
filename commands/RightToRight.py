@@ -14,7 +14,7 @@ class RightToRight(CommandGroup):
         super().__init__('RightToRight')
         # Go to switch
         self.addSequential(SetDistance(399.4))
-        self.addParallel(ClimbForTime(3))
+        self.addParallel(ClimbForTime(5))
         self.addParallel(SuckForTime(12))
 
         # Turn left

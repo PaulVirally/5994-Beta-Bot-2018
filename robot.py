@@ -34,10 +34,10 @@ class Robot(CommandBasedRobot):
         self.autoChooser = wpilib.SendableChooser()
 
         # self.autoChooser.addDefault('No Auto', NoAuto())
-        self.autoChooser.addDefault('Center Switch Auto', CenterSwitchAuto())
+        self.autoChooser.addDefault('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
-        # self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
-        self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
+        self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
+        # self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Cross Line Auto', CrossLineAuto())
         self.autoChooser.addObject('Left Switch Safe', LeftSwitchSafe())
         self.autoChooser.addObject('Right Switch Safe', RightSwitchSafe())

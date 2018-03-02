@@ -23,4 +23,4 @@ class LeftSwitchSafe(Command):
             return
 
         if msg[0] == 'L':
-            LeftToLeft()
+            LeftToLeft().execute()

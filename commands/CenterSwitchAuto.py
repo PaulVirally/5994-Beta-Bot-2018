@@ -23,7 +23,7 @@ class CenterSwitchAuto(Command):
             return
 
         if msg[0] == 'L':
-            CenterToLeft()        
+            CenterToLeft().execute()
             
         elif msg[1] == 'R':
-            CenterToRight()
+            CenterToRight().execute()
