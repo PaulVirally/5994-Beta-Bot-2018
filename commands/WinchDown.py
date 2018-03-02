@@ -18,5 +18,5 @@ class WinchDown(Command):
     def execute(self):
         subsystems.claw.winchDown()
 
-    def stop(self):
+    def end(self):
         subsystems.claw.stop()

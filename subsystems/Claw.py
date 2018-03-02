@@ -1,6 +1,7 @@
 import wpilib
+import ctre
 from wpilib.command.subsystem import Subsystem
-from commands.HoldClaw import HoldClaw
+from commands.DriveClaw import DriveClaw
 import RobotMap
 
 class Claw(Subsystem):
@@ -14,21 +15,24 @@ class Claw(Subsystem):
         super().__init__('Claw')
 
         self.lastValue = 0
-        self.motor = wpilib.VictorSP(RobotMap.claw.motor)
-        self.winchMotor = wpilib.VictorSP(RobotMap.claw.winchMotor)
+        self.motorL = wpilib.VictorSP(RobotMap.claw.leftMotor)
+        self.motorR = wpilib.VictorSP(RobotMap.claw.rightMotor)
+        self.winchMotor = ctre.wpi_talonsrx.WPI_TalonSRX(RobotMap.claw.winchMotor)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(HoldClaw())
+        self.setDefaultCommand(DriveClaw())
 
     def _set(self, value):
         self.lastValue = value
-        self.motor.set(value)
+        self.motorL.set(value)
+        self.motorR.set(-value)
 
     def stop(self):
         self._set(0)
+        self.winchMotor.set(0)
 
     def hold(self):
-        self._set(0.2)
+        self._set(0)
 
     def suck(self):
         self._set(1)
@@ -43,7 +47,8 @@ class Claw(Subsystem):
         self.winchMotor.set(-1)
 
     def log(self):
-        wpilib.SmartDashboard.putNumber('Claw', self.lastValue)
+        wpilib.SmartDashboard.putNumber('Claw', self.motorL.get())
+        wpilib.SmartDashboard.putNumber('Winch', self.winchMotor.get())
 
     def update(self):
         pass

@@ -1,23 +1,22 @@
 from wpilib.command.command import Command
 from wpilib.command.waitcommand import WaitCommand
 from commands.LeftToLeft import LeftToLeft
-from commands.LeftToRight import LeftToRight
 import wpilib
 import subsystems
 
-class LeftSwitchAuto(Command):
+class LeftSwitchSafe(Command):
     '''
     The auto that goes to the switch starting from the left
     '''
 
     def __init__(self):
-        super().__init__('Left Switch Auto')
+        super().__init__('Left Switch Safe Auto')
 
     def initialize(self):
-        print('[AUTO] LeftSwitchAuto running')
+        print('[AUTO] LeftSwitchSafe running')        
 
         msg = wpilib.DriverStation.getInstance().getGameSpecificMessage()
-        print('[AUTO] Game specific message (msg, repr, type): {0}\n{1}\n{2}'.format(msg, repr(msg), type(msg)))
+        print('[AUTO] Game specific message (msg, repr, type): {0}\n{1}\n{2}'.format(msg, repr(msg), type(msg)))        
 
         if not msg:
             print('[WARNING] No game specific message found!')
@@ -25,6 +24,3 @@ class LeftSwitchAuto(Command):
 
         if msg[0] == 'L':
             LeftToLeft()
-
-        elif msg[1] == 'R':
-            LeftToRight()

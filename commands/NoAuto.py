@@ -9,5 +9,6 @@ class NoAuto(CommandGroup):
 
     def __init__(self):
         super().__init__('No Auto')
+        print('[AUTO] NoAuto running')
 
         self.addSequential(WaitCommand(timeout=15))            

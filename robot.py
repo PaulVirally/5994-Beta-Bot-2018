@@ -5,7 +5,9 @@ from commands.LeftSwitchAuto import LeftSwitchAuto
 from commands.CenterSwitchAuto import CenterSwitchAuto
 from commands.RightSwitchAuto import RightSwitchAuto
 from commands.CrossLineAuto import CrossLineAuto
-from commands.AutoTest import AutoTest
+from commands.LeftSwitchSafe import LeftSwitchSafe
+from commands.RightSwitchSafe import RightSwitchSafe
+# from commands.AutoTest import AutoTest
 import wpilib
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
@@ -30,12 +32,16 @@ class Robot(CommandBasedRobot):
         subsystems.init()
 
         self.autoChooser = wpilib.SendableChooser()
+
         # self.autoChooser.addDefault('No Auto', NoAuto())
-        self.autoChooser.addDefault('Auto Test', AutoTest())
+        self.autoChooser.addDefault('Center Switch Auto', CenterSwitchAuto())
         self.autoChooser.addObject('Left Switch Auto', LeftSwitchAuto())
-        self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
+        # self.autoChooser.addObject('Center Switch Auto', CenterSwitchAuto())
         self.autoChooser.addObject('Right Switch Auto', RightSwitchAuto())
         self.autoChooser.addObject('Cross Line Auto', CrossLineAuto())
+        self.autoChooser.addObject('Left Switch Safe', LeftSwitchSafe())
+        self.autoChooser.addObject('Right Switch Safe', RightSwitchSafe())
+        
         wpilib.SmartDashboard.putData('Auto Mode', self.autoChooser)
         self.autonomousCommand = None
 
@@ -62,6 +68,7 @@ class Robot(CommandBasedRobot):
         '''This function is called periodically during autonomous.'''
         Scheduler.getInstance().run()
         subsystems.update()
+        self.log()
 
     def teleopInit(self):
         '''This function is called at the beginning of operator control.'''
@@ -85,13 +92,16 @@ class Robot(CommandBasedRobot):
     def disabledPeriodic(self):
         '''This function is called periodically while disabled.'''
         self.log()
-        subsystems.update()        
+        subsystems.update()    
 
     def log(self):
         '''Logs all the information from the subsystems and
         from the OI to the SmartDashboard.'''
         subsystems.log()
         OI.log()
+        wpilib.SmartDashboard.putData(subsystems.drivetrain)
+        wpilib.SmartDashboard.putData(subsystems.claw)
+        wpilib.SmartDashboard.putData(subsystems.elevator)
 
 if __name__ == '__main__':
     wpilib.run(Robot)

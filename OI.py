@@ -12,7 +12,7 @@ from subsystems import Drivetrain
 import wpilib
 from wpilib.joystick import Joystick
 from wpilib.buttons.joystickbutton import JoystickButton
-
+import Utils
 import RobotMap
 
 joystick = None
@@ -30,26 +30,29 @@ def init():
     brakeButton = JoystickButton(joystick, RobotMap.buttons.brake)
     brakeButton.whileHeld(Brake())
 
-    resetRevolutionsButton = JoystickButton(joystick, RobotMap.buttons.resetRevolutions)
-    resetRevolutionsButton.whenPressed(ResetRevolutions())
+    # resetRevolutionsButton = JoystickButton(joystick, RobotMap.buttons.resetRevolutions)
+    # resetRevolutionsButton.whenPressed(ResetRevolutions())
 
     preciseDriveButton = JoystickButton(joystick, RobotMap.buttons.preciseDrive)
     preciseDriveButton.whileHeld(PreciseDriveWithJoystick())
 
-    climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
-    climbButton.whileHeld(Climb())
+    # climbButton = JoystickButton(joystick, RobotMap.buttons.climb)
+    # climbButton.whileHeld(Climb())
 
-    dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
-    dropButton.whileHeld(Drop())
+    # dropButton = JoystickButton(joystick, RobotMap.buttons.drop)
+    # dropButton.whileHeld(Drop())
 
-    stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
-    stopClimbButton.whileHeld(StopClimb())
+    # stopClimbButton = JoystickButton(joystick, RobotMap.buttons.stopClimb)
+    # stopClimbButton.whileHeld(StopClimb())
 
-    suckCubeButton = JoystickButton(joystick, RobotMap.buttons.suckCube)
-    suckCubeButton.whileHeld(SuckCube())
+    # suckCubeButton = JoystickButton(joystick, RobotMap.buttons.suckCube)
+    # suckCubeButton.whileHeld(SuckCube())
 
     retractCubeButton = JoystickButton(joystick, RobotMap.buttons.retractCube)
     retractCubeButton.whileHeld(RetractCube())
+
+    retractCubeButton2 = JoystickButton(joystick, RobotMap.buttons.retractCube2)
+    retractCubeButton2.whileHeld(RetractCube())
 
     winchUpButton = JoystickButton(joystick, RobotMap.buttons.winchUp)
     winchUpButton.whileHeld(WinchUp())
@@ -58,15 +61,42 @@ def init():
     winchDownButton.whileHeld(WinchDown())
 
 def getJoyTurn():
-    joyX = joystick.getX()
-    joyZ = joystick.getZ()
-    return (joyX if abs(joyX) > abs(joyZ) else joyZ)
+    joyX = joystick.getRawAxis(0)
+    t = joystick.getRawAxis(5) # 3
+    joyZ = joystick.getRawAxis(4) # 2
+
+    if abs(t) < abs(joyZ):
+        return (joyX if abs(joyX) > abs(joyZ) else joyZ)
+    return joyX
 
 def getJoySpeed():
-    return joystick.getY()
+    return joystick.getRawAxis(1)
+
+def getJoyElevatorSpeed():
+    t = joystick.getRawAxis(5) # 3
+    joyZ = joystick.getRawAxis(4) # 2
+
+    if abs(t) > abs(joyZ):
+        return t
+    return 0
+
+def rumble():
+    joystick.setRumble(Joystick.RumbleType.kLeftRumble, 1)
+    joystick.setRumble(Joystick.RumbleType.kRightRumble, 1)
+
+def stopRumble():
+    joystick.setRumble(Joystick.RumbleType.kLeftRumble, 0)
+    joystick.setRumble(Joystick.RumbleType.kRightRumble, 0)
+
+def getClawSpeeds():
+    l = joystick.getRawAxis(2) # 4
+    r = joystick.getRawAxis(3) # 5
+    return (l, r)
+    # return ((l*2)-1, (r*2)-1)
+    # return ((l+1)/2, (r+1)/2)
 
 def getSpeedSmoothing():
-    return wpilib.SmartDashboard.getNumber('Speed Sensitivity', RobotMap.defaults.turningSensitivity)
+    return wpilib.SmartDashboard.getNumber('Speed Sensitivity', RobotMap.defaults.speedSensitivity)
 
 def getTurnSmoothing():
     return wpilib.SmartDashboard.getNumber('Turning Sensitivity', RobotMap.defaults.turningSensitivity)
@@ -74,3 +104,5 @@ def getTurnSmoothing():
 def log():
     wpilib.SmartDashboard.putNumber('Speed Input', getJoySpeed())
     wpilib.SmartDashboard.putNumber('Rotate Input', getJoyTurn())
+    wpilib.SmartDashboard.putNumber('LeftClaw', joystick.getRawAxis(2))
+    wpilib.SmartDashboard.putNumber('RightClaw', joystick.getRawAxis(3))

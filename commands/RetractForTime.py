@@ -1,14 +1,14 @@
-from wpilib.command import Command
+from wpilib.command import TimedCommand
 
 import subsystems
 
-class RetractCube(Command):
+class RetractCubeForTime(TimedCommand):
     '''
     Ejects a cube from the claw
     '''
 
-    def __init__(self):
-        super().__init__('RetractCube')
+    def __init__(self, timeoutInSeconds):
+        super().__init__('RetractCubeForTime', timeoutInSeconds)
         
         self.requires(subsystems.claw)
 

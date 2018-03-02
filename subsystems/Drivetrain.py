@@ -7,6 +7,7 @@ from wpilib.drive.differentialdrive import DifferentialDrive
 from commands.SmoothFollowJoystick import SmoothFollowJoystick
 import RobotMap
 import subsystems
+import OI
 
 class Drivetrain(Subsystem):
     '''
@@ -57,6 +58,9 @@ class Drivetrain(Subsystem):
                 moveValue = 0 if moveValue > 0 else -0
             if abs(rotateValue) > 0:
                 rotateValue = 0 if rotateValue > 0 else -0
+            OI.rumble()
+        else:
+            OI.stopRumble()
 
         self.drivetrain.arcadeDrive(moveValue, rotateValue)
         self.lastMoveValue = moveValue

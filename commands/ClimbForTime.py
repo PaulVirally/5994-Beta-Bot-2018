@@ -1,16 +1,16 @@
-from wpilib.command import Command
+from wpilib.command import TimedCommand
 
 import OI
 import subsystems
 import Utils
 
-class Climb(Command):
+class ClimbForTime(TimedCommand):
     '''
-    Activates the elevator subsystem
+    Activates the elevator subsystem (timed)
     '''
 
-    def __init__(self):
-        super().__init__('Climb')
+    def __init__(self, timeoutInSeconds):
+        super().__init__('ClimbForTime', timeoutInSeconds)
 
         self.requires(subsystems.elevator)
 
