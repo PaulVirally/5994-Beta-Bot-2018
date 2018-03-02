@@ -1,4 +1,4 @@
-from wpilib.command.commandgroup import Command
+from wpilib.command.command import Command
 from wpilib.command.waitcommand import WaitCommand
 from commands.LeftToLeft import LeftToLeft
 from commands.LeftToRight import LeftToRight

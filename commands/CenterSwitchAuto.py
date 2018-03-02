@@ -1,4 +1,4 @@
-from wpilib.command.commandgroup import Command
+from wpilib.command.command import Command
 from commands.CenterToLeft import CenterToLeft
 from commands.CenterToRight import CenterToRight
 import wpilib
