@@ -8,7 +8,7 @@ class RetractCubeForTime(TimedCommand):
     '''
 
     def __init__(self, timeoutInSeconds):
-        super().__init__('RetractCubeForTime', timeoutInSeconds)
+        super().__init__('RetractCube', timeoutInSeconds)
         
         self.requires(subsystems.claw)
 
